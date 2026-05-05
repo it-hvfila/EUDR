@@ -406,10 +406,11 @@
                             <tr>
                                 <td class="level-1">- Rubber plantations Demonstration</td>
                                 <td>Demonstrated all the plantation plots with forest, conservation areas, etc.</td>
-                                <td class="border-bottom-row" style="text-align: center;"><a href="#">Appx
+                                <td class="border-bottom-row" style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/ea226c80bc') }}">Appx
                                         #{{ $appx++ }} -
                                         Rubber plantations
-                                        Deforestation – free Demonstration(ยังไม่มีไฟล์)</a> </td>
+                                        Deforestation – free Demonstration</a> </td>
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-1">- GISDA & RFD Map</td>
@@ -436,7 +437,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Business registration</td>
-                                <td class="link-text">In accordance with Section 1097³ of the Civil Code</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf">In
+                                        accordance with Section 1097³ of the Civil Code</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd7458cb2') }}">Appx #{{ $appx++ }}
                                         Business
@@ -444,7 +446,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Factory license</td>
-                                <td class="link-text">In accordance with Section 12 of the Factory Act B.E. 2535 (1992)
+                                <td class="link-text"><a
+                                        href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf">In
+                                        accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/53cf4e48cf') }}">Appx #{{ $appx++ }}
@@ -458,8 +462,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Wastewater Treatment Plant</td>
-                                <td class="link-text">In accordance with Section 70 of the Enhancement and Conservation of
-                                    National Environmental Quality Act, B.E. 2535 (1992)</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf">In accordance
+                                        with Section 70 of the Enhancement and Conservation of
+                                        National Environmental Quality Act, B.E. 2535 (1992)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/b7e53d08c4') }}">Appx #{{ $appx++ }}
                                         Wastewater
@@ -467,9 +472,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Water Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/a9b90478e3') }}">Appx #{{ $appx++ }}
                                         Water
@@ -478,9 +485,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Air Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/3a356e41a0') }}">Appx #{{ $appx++ }}
                                         Air Pollution
@@ -494,15 +503,20 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Employer Registration for Social Security</td>
-                                <td class="link-text">In accordance with Section 36 of the Social Security Act B.E. 2533"
-                                    (1990)</td>
+                                <td class="link-text"><a
+                                        href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
+                                        accordance with Section 36 of the Social
+                                        Security Act B.E. 2533"
+                                        (1990)</a></td>
                                 <td style="text-align: center;"><a href="#">Appx #{{ $appx++ }} Social
                                         Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
-                                <td class="link-text">In accordance with Section 155/1 of the Labour Protection Act, B.E.
-                                    2541 (1998)</td>
+                                <td class="link-text"><a
+                                        href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a">In
+                                        accordance with Section 155/1 of the Labour Protection Act, B.E.
+                                        2541 (1998)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/591ce55991') }}">Appx #{{ $appx++ }} -
                                         KR 11</a>
@@ -510,8 +524,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Foreigner Workers</td>
-                                <td class="link-text">Registration of Foreign Workers 2023 According to the Cabinet
-                                    Resolution of July 5, 2023</td>
+                                <td class="link-text"><a
+                                        href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
+                                        of Foreign Workers 2023 According to the Cabinet
+                                        Resolution of July 5, 2023</a></td>
                                 <td style="text-align: center;"><a href="#">Appx #{{ $appx++ }} Foreigner
                                         Workers List</a></td>
                             </tr>
@@ -522,8 +538,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- License for Operating Health Hazardous Activities.</td>
-                                <td class="link-text">In accordance with Section 32 of the Public Health Act B.E. 2535
-                                    (1992) and Amendments</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
+                                        target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
+                                        (1992) and Amendments</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6aa4254141') }}">Appx #{{ $appx++ }}
                                         License for
@@ -532,9 +549,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
-                                <td class="link-text">In accordance with Section 2 of the Ministerial Regulation on
-                                    Standards for the Administration and Management of Occupational Safety, Health, and
-                                    Environmental Conditions in the Workplace B.E. 2549 (2006)</td>
+                                <td class="link-text"><a
+                                        href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
+                                        target="_blank">In accordance with Section 2 of the Ministerial Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/5436ecd643') }}">Appx #{{ $appx++ }}
                                         Safety
@@ -542,10 +561,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Fire Fighting and Evacuation</td>
-                                <td class="link-text">The Ministry Regulation sets forth standards for the management and
-                                    implementation of occupational safety, health, and environmental conditions in the
-                                    workplace concerning fire prevention and suppression, as outlined in Section 30 of the
-                                    regulation</td>
+                                <td class="link-text"><a
+                                        href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
+                                        target="_blank">In accordance with Section 30 of the Ministry Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/198b38e1b7') }}">Annex #{{ $appx++ }}
                                         Firefighting
@@ -553,8 +573,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Hazardous Material Possession License</td>
-                                <td class="link-text">In accordance with Section 18 of the Hazardous Substance Act B.E.
-                                    2535 (1992)</td>
+                                <td class="link-text"><a
+                                        href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
+                                        target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
+                                        2535 (1992)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/0c66349597') }}">Annex #{{ $appx++ }}
                                         Hazardous
@@ -567,7 +589,10 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
-                                <td class="link-text">In accordance with the Measurement Act B.E. 2542 (1999)</td>
+                                <td class="link-text"><a
+                                        href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
+                                        target="_blank">In
+                                        accordance with the Measurement Act B.E. 2542 (1999)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/e8a5056e1b') }}">Annex #{{ $appx++ }}
                                         Calibration
@@ -576,7 +601,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Certificate of Value Added Tax Registration</td>
-                                <td class="link-text">In accordance with Revenue Code Section 4 Value Added Tax</td>
+                                <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
+                                        target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd300cfcf') }}">Annex #{{ $appx++ }}
                                         Certificate
@@ -584,7 +610,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Natural Rubber Trading License</td>
-                                <td class="link-text">In accordance with Section 22 the Rubber Control Act B.E. 2542 (1999)
+                                <td class="link-text"><a
+                                        href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
+                                        target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
+                                        (1999)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6d0d3f91b1') }}">Annex #{{ $appx++ }}
@@ -601,8 +630,10 @@
                                     production</td>
                                 <td class="link-text">The legal complaints at the plot level have been verified, and the
                                     results are described in a GeoJSON file</td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Legal
-                                        Compliance Verification for Rubber Plantations(ยังไม่มีไฟล์)</a>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/0cd09dd8f8') }}">Annex #{{ $appx++ }}
+                                        Legal
+                                        Compliance Verification for Rubber Plantations</a>
                                 </td>
                             </tr>
                             <tr>
@@ -631,7 +662,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Business registration</td>
-                                <td class="link-text">In accordance with Section 1097³ of the Civil Code</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf">In
+                                        accordance with Section 1097³ of the Civil Code</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd7458cb2') }}">Annex #{{ $appx++ }}
                                         Business
@@ -639,7 +671,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Factory license</td>
-                                <td class="link-text">In accordance with Section 12 of the Factory Act B.E. 2535 (1992)
+                                <td class="link-text"><a
+                                        href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf">In
+                                        accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/53cf4e48cf') }}">Annex #{{ $appx++ }}
@@ -653,8 +687,10 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Wastewater Treatment Plant</td>
-                                <td class="link-text">In accordance with Section 70 of the Enhancement and Conservation of
-                                    National Environmental Quality Act, B.E. 2535 (1992)</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf">accordance
+                                        with Section 70 of the Enhancement and Conservation of
+                                        National Environmental Quality Act, B.E. 2535 (1992)</a>In
+                                </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/b7e53d08c4') }}">Annex #{{ $appx++ }}
                                         Wastewater
@@ -662,9 +698,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Water Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/a9b90478e3') }}">Annex #{{ $appx++ }}
                                         Water
@@ -673,9 +711,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Air Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/3a356e41a0') }}">Annex #{{ $appx++ }}
                                         Air
@@ -689,15 +729,19 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Employer Registration for Social Security</td>
-                                <td class="link-text">In accordance with Section 36 of the Social Security Act B.E. 2533"
-                                    (1990)</td>
+                                <td class="link-text"><a
+                                        href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
+                                        accordance with Section 36 of the Social Security Act B.E. 2533"
+                                        (1990)</a></td>
                                 <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Social
                                         Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
-                                <td class="link-text">In accordance with Section 155/1 of the Labour Protection Act, B.E.
-                                    2541 (1998)</td>
+                                <td class="link-text"><a
+                                        href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a">In
+                                        accordance with Section 155/1 of the Labour Protection Act, B.E.
+                                        2541 (1998)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/591ce55991') }}">Annex #{{ $appx++ }} -
                                         KR 11</a>
@@ -705,8 +749,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Foreigner Workers</td>
-                                <td class="link-text">Registration of Foreign Workers 2023 According to the Cabinet
-                                    Resolution of July 5, 2023</td>
+                                <td class="link-text"><a
+                                        href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
+                                        of Foreign Workers 2023 According to the Cabinet
+                                        Resolution of July 5, 2023</a></td>
                                 <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Foreigner
                                         Workers List(ยังไม่มีไฟล์)</a></td>
                             </tr>
@@ -717,8 +763,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- License for Operating Health Hazardous Activities.</td>
-                                <td class="link-text">In accordance with Section 32 of the Public Health Act B.E. 2535
-                                    (1992) and Amendments</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
+                                        target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
+                                        (1992) and Amendments</td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6aa4254141') }}">Annex #{{ $appx++ }}
                                         License for
@@ -727,9 +774,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
-                                <td class="link-text">In accordance with Section 2 of the Ministerial Regulation on
-                                    Standards for the Administration and Management of Occupational Safety, Health, and
-                                    Environmental Conditions in the Workplace B.E. 2549 (2006)</td>
+                                <td class="link-text"><a
+                                        href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
+                                        target="_blank">In accordance with Section 2 of the Ministerial Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/5436ecd643') }}">Annex #{{ $appx++ }}
                                         Safety
@@ -737,10 +786,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Fire Fighting and Evacuation</td>
-                                <td class="link-text">The Ministry Regulation sets forth standards for the management and
-                                    implementation of occupational safety, health, and environmental conditions in the
-                                    workplace concerning fire prevention and suppression, as outlined in Section 30 of the
-                                    regulation</td>
+                                <td class="link-text"><a
+                                        href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
+                                        target="_blank">In accordance with Section 30 of the Ministry Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/198b38e1b7') }}">Annex #{{ $appx++ }}
                                         Firefighting
@@ -748,8 +798,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Hazardous Material Possession License</td>
-                                <td class="link-text">In accordance with Section 18 of the Hazardous Substance Act B.E.
-                                    2535 (1992)</td>
+                                <td class="link-text"><a
+                                        href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
+                                        target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
+                                        2535 (1992)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/0c66349597') }}">Annex #{{ $appx++ }}
                                         Hazardous
@@ -762,7 +814,10 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
-                                <td class="link-text">In accordance with the Measurement Act B.E. 2542 (1999)</td>
+                                <td class="link-text"><a
+                                        href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
+                                        target="_blank">In
+                                        accordance with the Measurement Act B.E. 2542 (1999)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/e8a5056e1b') }}">Annex #{{ $appx++ }}
                                         Calibration
@@ -771,7 +826,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Certificate of Value Added Tax Registration</td>
-                                <td class="link-text">In accordance with Revenue Code Section 4 Value Added Tax</td>
+                                <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
+                                        target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd300cfcf') }}">Annex #{{ $appx++ }}
                                         Certificate
@@ -779,7 +835,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Natural Rubber Trading License</td>
-                                <td class="link-text">In accordance with Section 22 the Rubber Control Act B.E. 2542 (1999)
+                                <td class="link-text"><a
+                                        href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
+                                        target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
+                                        (1999)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6d0d3f91b1') }}">Annex #{{ $appx++ }}
@@ -796,8 +855,10 @@
                                     production</td>
                                 <td class="link-text">The legal complaints at the plot level have been verified, and the
                                     results are described in a GeoJSON file</td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Legal
-                                        Compliance Verification for Rubber Plantations(ยังไม่มีไฟล์)</a>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/0cd09dd8f8') }}">Annex #{{ $appx++ }}
+                                        Legal
+                                        Compliance Verification for Rubber Plantations</a>
                                 </td>
                             </tr>
                             <tr>
@@ -842,7 +903,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Business registration</td>
-                                <td class="link-text">In accordance with Section 1097³ of the Civil Code</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf">In
+                                        accordance with Section 1097³ of the Civil Code</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd7458cb2') }}">Annex #{{ $appx++ }}
                                         Business
@@ -850,7 +912,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Factory license</td>
-                                <td class="link-text">In accordance with Section 12 of the Factory Act B.E. 2535 (1992)
+                                <td class="link-text"><a
+                                        href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf">In
+                                        accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/53cf4e48cf') }}">Annex #{{ $appx++ }}
@@ -864,8 +928,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Wastewater Treatment Plant</td>
-                                <td class="link-text">In accordance with Section 70 of the Enhancement and Conservation of
-                                    National Environmental Quality Act, B.E. 2535 (1992)</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf">In accordance
+                                        with Section 70 of the Enhancement and Conservation of
+                                        National Environmental Quality Act, B.E. 2535 (1992)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/b7e53d08c4') }}">Annex #{{ $appx++ }}
                                         Wastewater
@@ -873,9 +938,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Water Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/a9b90478e3') }}">Annex #{{ $appx++ }}
                                         Water
@@ -884,9 +951,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Air Pollution</td>
-                                <td class="link-text">In accordance with Section 68 Enhancement and Conservation of
-                                    National
-                                    Environmental Quality Act B.E. 2535</td>
+                                <td class="link-text"><a
+                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
+                                        accordance with Section 68 Enhancement and Conservation of
+                                        National
+                                        Environmental Quality Act B.E. 2535</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/3a356e41a0') }}">Annex #{{ $appx++ }}
                                         Air
@@ -900,15 +969,19 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Employer Registration for Social Security</td>
-                                <td class="link-text">In accordance with Section 36 of the Social Security Act B.E. 2533"
-                                    (1990)</td>
+                                <td class="link-text"><a
+                                        href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
+                                        accordance with Section 36 of the Social Security Act B.E. 2533"
+                                        (1990)</a></td>
                                 <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Social
                                         Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
-                                <td class="link-text">In accordance with Section 155/1 of the Labour Protection Act, B.E.
-                                    2541 (1998)</td>
+                                <td class="link-text"><a
+                                        href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a">In
+                                        accordance with Section 155/1 of the Labour Protection Act, B.E.
+                                        2541 (1998)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/591ce55991') }}">Annex #{{ $appx++ }}
                                         -
@@ -917,15 +990,20 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Foreigner Workers</td>
-                                <td class="link-text">Registration of Foreign Workers 2023 According to the Cabinet
-                                    Resolution of July 5, 2023</td>
+                                <td class="link-text"><a
+                                        href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
+                                        of Foreign Workers 2023 According to the Cabinet
+                                        Resolution of July 5, 2023</a></td>
                                 <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Foreigner
                                         Workers List(ยังไม่มีไฟล์)</a></td>
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Anti-Bribery and Corruption Policy</td>
-                                <td class="link-text">In accordance with Section 176 of the Organic Act On Anti-Corruption
-                                    B.E.2561 (2018)</td>
+                                <td class="link-text"><a
+                                        href="https://nacc.go.th/files/article/attachments/main_old_article_20190614144832.pdf?csrt=6294656410101426070"
+                                        target="_blank">In accordance with Section 176 of the Organic Act On
+                                        Anti-Corruption
+                                        B.E.2561 (2018)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/591ce55991') }}">Annex #{{ $appx++ }}
                                         Anti-Bribery
@@ -938,8 +1016,9 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- License for Operating Health Hazardous Activities.</td>
-                                <td class="link-text">In accordance with Section 32 of the Public Health Act B.E. 2535
-                                    (1992) and Amendments</td>
+                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
+                                        target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
+                                        (1992) and Amendments</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6aa4254141') }}">Annex #{{ $appx++ }}
                                         License for
@@ -948,9 +1027,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
-                                <td class="link-text">In accordance with Section 2 of the Ministerial Regulation on
-                                    Standards for the Administration and Management of Occupational Safety, Health, and
-                                    Environmental Conditions in the Workplace B.E. 2549 (2006)</td>
+                                <td class="link-text"><a
+                                        href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
+                                        target="_blank">In accordance with Section 2 of the Ministerial Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/5436ecd643') }}">Annex #{{ $appx++ }}
                                         Safety
@@ -958,10 +1039,11 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Fire Fighting and Evacuation</td>
-                                <td class="link-text">The Ministry Regulation sets forth standards for the management and
-                                    implementation of occupational safety, health, and environmental conditions in the
-                                    workplace concerning fire prevention and suppression, as outlined in Section 30 of the
-                                    regulation</td>
+                                <td class="link-text"><a
+                                        href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
+                                        target="_blank">In accordance with Section 30 of the Ministry Regulation on
+                                        Standards for the Administration and Management of Occupational Safety, Health, and
+                                        Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/198b38e1b7') }}">Annex #{{ $appx++ }}
                                         Firefighting
@@ -969,8 +1051,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Hazardous Material Possession License</td>
-                                <td class="link-text">In accordance with Section 18 of the Hazardous Substance Act B.E.
-                                    2535 (1992)</td>
+                                <td class="link-text"><a
+                                        href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
+                                        target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
+                                        2535 (1992)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/0c66349597') }}">Annex #{{ $appx++ }}
                                         Hazardous
@@ -983,7 +1067,10 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
-                                <td class="link-text">In accordance with the Measurement Act B.E. 2542 (1999)</td>
+                                <td class="link-text"><a
+                                        href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
+                                        target="_blank">In
+                                        accordance with the Measurement Act B.E. 2542 (1999)</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/e8a5056e1b') }}">Annex #{{ $appx++ }}
                                         Calibration
@@ -992,7 +1079,8 @@
                             </tr>
                             <tr>
                                 <td class="level-3">- Certificate of Value Added Tax Registration</td>
-                                <td class="link-text">In accordance with Revenue Code Section 4 Value Added Tax</td>
+                                <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
+                                        target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/ccd300cfcf') }}">Annex #{{ $appx++ }}
                                         Certificate
@@ -1000,7 +1088,10 @@
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Natural Rubber Trading License</td>
-                                <td class="link-text">In accordance with Section 22 the Rubber Control Act B.E. 2542 (1999)
+                                <td class="link-text"><a
+                                        href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
+                                        target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
+                                        (1999)</a>
                                 </td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/6d0d3f91b1') }}">Annex #{{ $appx++ }}
@@ -1017,8 +1108,10 @@
                                     production</td>
                                 <td class="link-text">The legal complaints at the plot level have been verified, and the
                                     results are described in a GeoJSON file</td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Legal
-                                        Compliance Verification for Rubber Plantations(ยังไม่มีไฟล์)</a>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/0cd09dd8f8') }}">Annex #{{ $appx++ }}
+                                        Legal
+                                        Compliance Verification for Rubber Plantations</a>
                                 </td>
                             </tr>
                             {{-- <tr>
@@ -1069,8 +1162,10 @@
                             <tr>
                                 <td class="level-2">- DDS Summary</td>
                                 <td class="link-text">Due Diligence System</td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Due
-                                        Diligence System(ยังไม่มีไฟล์)</a>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/5620561ea7') }}">Annex #{{ $appx++ }}
+                                        Due
+                                        Diligence System</a>
                                 </td>
                             </tr>
                             <tr>
@@ -1083,7 +1178,9 @@
                             </tr>
                             <tr>
                                 <td class="level-2">- PDPA</td>
-                                <td class="link-text">In accordance with Personal Data Protection Act B.E.2562 (2019)</td>
+                                <td class="link-text"><a
+                                        href="https://data.thailand.opendevelopmentmekong.net/en/laws_record/2562?utm_source=chatgpt.com">In
+                                        accordance with Personal Data Protection Act B.E.2562 (2019</a>)</td>
                                 <td style="text-align: center;"><a
                                         href="{{ url('company_docs/download/3965136a86') }}">Annex #{{ $appx++ }}
                                         PDPA</a>
