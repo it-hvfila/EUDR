@@ -1,0 +1,18 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [100.26497752883552, 13.603890536645546]
+            },
+            "properties": {
+                "name": "Target Location",
+                "address": "Bang Nam Chuet, Mueang Samut Sakhon District, Samut Sakhon, Thailand",
+                "latitude": 13.603890536645546,
+                "longitude": 100.26497752883552
+            }
+        }
+    ]
+}
