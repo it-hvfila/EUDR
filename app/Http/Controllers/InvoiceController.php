@@ -21,7 +21,7 @@ class InvoiceController extends Controller
 
         $packId = $request->pack_id;
 
-        // $url_production = 'https://erpepicor.hvfila.com/pilot/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
+        // $url_pilot = 'https://erpepicor.hvfila.com/pilot/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
         $url_production = 'https://erpepicor.hvfila.com/production/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
 
         $response = Http::withBasicAuth(

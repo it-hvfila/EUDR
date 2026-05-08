@@ -508,8 +508,10 @@
                                         accordance with Section 36 of the Social
                                         Security Act B.E. 2533"
                                         (1990)</a></td>
-                                <td style="text-align: center;"><a href="#">Appx #{{ $appx++ }} Social
-                                        Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/07d6d1e923') }}">Appx #{{ $appx++ }}
+                                        Social
+                                        Security Certificate of Registration</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
@@ -528,7 +530,9 @@
                                         href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
                                         of Foreign Workers 2023 According to the Cabinet
                                         Resolution of July 5, 2023</a></td>
-                                <td style="text-align: center;"><a href="#">Appx #{{ $appx++ }} Foreigner
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/f3ce181606') }}">Appx #{{ $appx++ }}
+                                        Foreigner
                                         Workers List</a></td>
                             </tr>
                             <tr>
@@ -733,8 +737,10 @@
                                         href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
                                         accordance with Section 36 of the Social Security Act B.E. 2533"
                                         (1990)</a></td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Social
-                                        Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/07d6d1e923') }}">Annex #{{ $appx++ }}
+                                        Social
+                                        Security Certificate of Registration</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
@@ -753,8 +759,10 @@
                                         href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
                                         of Foreign Workers 2023 According to the Cabinet
                                         Resolution of July 5, 2023</a></td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Foreigner
-                                        Workers List(ยังไม่มีไฟล์)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/f3ce181606') }}">Annex #{{ $appx++ }}
+                                        Foreigner
+                                        Workers List</a></td>
                             </tr>
                             <tr>
                                 <td class="level-2"><strong>- Occupational Health and Safety regulations</strong></td>
@@ -973,8 +981,10 @@
                                         href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
                                         accordance with Section 36 of the Social Security Act B.E. 2533"
                                         (1990)</a></td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Social
-                                        Security Certificate of Registration(ยังไม่มีไฟล์)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/07d6d1e923') }}">Annex #{{ $appx++ }}
+                                        Social
+                                        Security Certificate of Registration</a></td>
                             </tr>
                             <tr>
                                 <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
@@ -994,8 +1004,10 @@
                                         href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
                                         of Foreign Workers 2023 According to the Cabinet
                                         Resolution of July 5, 2023</a></td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} Foreigner
-                                        Workers List(ยังไม่มีไฟล์)</a></td>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/f3ce181606') }}">Annex #{{ $appx++ }}
+                                        Foreigner
+                                        Workers List</a></td>
                             </tr>
                             <tr class="border-bottom-row">
                                 <td class="level-3">- Anti-Bribery and Corruption Policy</td>

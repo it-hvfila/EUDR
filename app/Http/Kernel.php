@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -64,6 +64,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'username.session' => \App\Http\Middleware\UsernameSessionMiddleware::class,
-        'auto.logout' => \App\Http\Middleware\AutoLogoutIfInactive::class, // Middleware ใหม่ที่เพิ่ม
+        'auto.logout' => \App\Http\Middleware\AutoLogoutIfInactive::class,
+        'customer.session' => \App\Http\Middleware\CustomerSession::class,
+
+
+        // Middleware ใหม่ที่เพิ่ม
     ];
 }

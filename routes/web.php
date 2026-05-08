@@ -12,25 +12,12 @@ use App\Http\Controllers\CompanyDocumentController;
 use App\Http\Controllers\Cpd_lotController;
 use App\Http\Controllers\Fg_CpdController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\CustomerController;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
-Route::get('/download-geojson/{filename}', function ($filename) {
-    // ให้ไปหาใน public_path แทน storage_path
-    $path = public_path($filename);
 
-    if (file_exists($path)) {
-        return response()->download($path);
-    }
-
-    abort(404, 'ไม่พบไฟล์ที่: ' . $path);
-})->name('geojson.download')->where('filename', '.*');
-
-Route::get(
-    '/company_docs/download/{token}',
-    [CompanyDocumentController::class, 'download']
-)->name('company.docs.download');
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +42,8 @@ Route::get('/', function () {
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/status', [UserController::class, 'status']);
-Route::post('/register', [UserController::class, 'register']);
+// Route::get('/status', [UserController::class, 'status']);
+// Route::post('/register', [UserController::class, 'register']);
 
 
 
@@ -208,6 +195,43 @@ Route::middleware(['username.session'])->group(function () {
     //Create a job
     Route::get('/job', function () {
         return view('job');
+    });
+});
+
+
+
+// =========================================================
+// Routes สำหรับลูกค้า (Customer Portal)
+// =========================================================
+Route::prefix('portal')->group(function () {
+
+    // 1. หน้า Login ลูกค้า (Public - ไม่ติด Middleware)
+    // เข้าผ่าน: http://127.0.0.1/eudr/public/portal/login
+    Route::get('/login', [CustomerController::class, 'showLoginForm'])->name('customer.login');
+    Route::post('/login', [CustomerController::class, 'login'])->name('customer.login.post');
+
+    // 2. กลุ่ม Route ที่ต้อง Login ก่อน (Protected by customer.session)
+    Route::middleware(['customer.session'])->group(function () {
+
+        // หน้าหลักหลัง Login (รายการไฟล์ทั้งหมด)
+        Route::get('/download-list', [CustomerController::class, 'index'])->name('customer.dashboard');
+
+        // Route สำหรับโหลด GeoJSON (ที่คุณเขียน Logic ไว้ใน web.php)
+        Route::get('/download-geojson/{filename}', function ($filename) {
+            $path = public_path($filename);
+            if (file_exists($path)) {
+                // อย่าลืมใส่ Logic บันทึก Log ตรงนี้ด้วยครับ
+                return response()->download($path);
+            }
+            abort(404, 'ไม่พบไฟล์');
+        })->name('geojson.download')->where('filename', '.*');
+
+        // Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
+        Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
+            ->name('company.docs.download');
+
+        // Logout สำหรับลูกค้า
+        Route::get('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
     });
 });
 //end-middleware
