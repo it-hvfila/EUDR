@@ -234,4 +234,7 @@ Route::prefix('portal')->group(function () {
         Route::get('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
     });
 });
+
+Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
+    ->name('company.docs.download');
 //end-middleware

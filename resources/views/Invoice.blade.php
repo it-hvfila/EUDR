@@ -277,6 +277,30 @@
                                 <td>{{ $header['invoice_no'] ?? '' }}</td>
                             </tr>
                             <tr>
+                                <td class="level-1">- Trade Name. : </td>
+                                <td>Rubber Thread</td>
+                            </tr>
+                            <tr>
+                                <td class="level-1">- Species (Scientific Name). : </td>
+                                <td>Hevea brasiliensis</td>
+                            </tr>
+                            <tr>
+                                <td class="level-1">- Commodities content. : </td>
+                                <td>Rubber Thread</td>
+                            </tr>
+                            <tr>
+                                <td class="level-1">- Harmonized System Code (HS Code). : </td>
+                                <td>4007 Vulcanised rubber thread and cord</td>
+                            </tr>
+                            <tr>
+                                <td class="level-1">- Country of harvesting. : </td>
+                                <td>Thailand(TH)</td>
+                            </tr>
+                            <tr>
+                                <td class="level-1">- Country of production. : </td>
+                                <td>Thailand(TH)</td>
+                            </tr>
+                            <tr>
                                 <td class="level-1">- Packing list No.</td>
                                 <td>{{ $header['pack_id'] }}</td>
                             </tr>
@@ -1184,8 +1208,10 @@
                                 <td class="level-2">- EUDR Supplier Audit Report</td>
                                 <td class="link-text">A third party conducted an audit of the company’s EUDR procedures and
                                     their implementation across the entire supply chain.</td>
-                                <td style="text-align: center;"><a href="#">Annex #{{ $appx++ }} EUDR
-                                        Supplier Audit Report(ยังไม่มีไฟล์)</a>
+                                <td style="text-align: center;"><a
+                                        href="{{ url('company_docs/download/c8796fc093') }}">Annex #{{ $appx++ }}
+                                        EUDR
+                                        Supplier Audit Report</a>
                                 </td>
                             </tr>
                             <tr>

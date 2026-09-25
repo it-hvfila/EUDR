@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+    # ส่วนตัวเว็บ Laravel
+    eudr-web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: eudr_web_app
+        restart: always
+        ports:
+            - "8500:80" # 🌟 ปรับเป็น 8500 หนีพอร์ต 8000 ของ Portainer ครับ
+        depends_on:
+            - eudr-db
+        networks:
+            - eudr_local_net
+
+    # ส่วนฐานข้อมูล MySQL
+    eudr-db:
+        image: mysql:8.0
+        container_name: eudr_db_container
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: YourRootPassword1234
+            MYSQL_DATABASE: eudr
+            MYSQL_USER: itadmin
+            MYSQL_PASSWORD: ithvf-69
+        volumes:
+            - ./db_data:/var/lib/mysql
+        networks:
+            - eudr_local_net
+
+networks:
+    eudr_local_net:
+        driver: bridge
