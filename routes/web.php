@@ -90,18 +90,73 @@ Route::middleware(['username.session'])->group(function () {
 
     Route::get('/lots_dataTable', [LotController::class, 'index'])->name('lots.dataTable');
 
-    // เอกสาร Supplier
-    // Supplier Documents
-    // Supplier Documents
-    Route::get('/supplier_docs', [SupplierDocumentController::class, 'index'])->name('supplier_docs.index');
-    Route::get('/supplier_docs/data', [SupplierDocumentController::class, 'index'])->name('supplier_docs.data');
-    Route::post('/supplier_docs/save', [SupplierDocumentController::class, 'saveDocument'])->name('supplier_docs.save');
-    Route::get('/supplier_docs/get/{id}', [SupplierDocumentController::class, 'getDocument'])->name('supplier_docs.get');
-    Route::get('/supplier_docs/view/{token}', [SupplierDocumentController::class, 'view'])->name('supplier_docs.view');
-    Route::get('/supplier_docs/download/{token}', [SupplierDocumentController::class, 'download'])->name('supplier_docs.download');
-    Route::delete('/supplier_docs/delete/{id}', [SupplierDocumentController::class, 'destroy'])->name('supplier_docs.destroy');
+    // // เอกสาร Supplier รวม
+    // Route::get('/supplier_docs', [SupplierDocumentController::class, 'index'])->name('supplier_docs.page');
+    // Route::get('/supplier_docs/data', [SupplierDocumentController::class, 'index'])->name('supplier_docs.data');
+
+    // // เอกสาร Supplier แบบรายเจ้า
+    // Route::get('/supplier/{supplier_id}/documents', [SupplierDocumentController::class, 'index'])->name('supplier_docs.index');
+    // Route::get('/supplier/{supplier_id}/documents/data', [SupplierDocumentController::class, 'index'])->name('supplier.docs.data');
+    // Route::post('/supplier_docs/save', [SupplierDocumentController::class, 'saveDocument'])->name('supplier_docs.save');
+    // Route::get('/supplier_docs/get/{id}', [SupplierDocumentController::class, 'getDocument'])->name('supplier_docs.get');
+    // Route::get('/supplier_docs/view/{token}', [SupplierDocumentController::class, 'view'])->name('supplier_docs.view');
+    // Route::get('/supplier_docs/download/{token}', [SupplierDocumentController::class, 'download'])->name('supplier_docs.download');
+    // Route::delete('/supplier_docs/delete/{id}', [SupplierDocumentController::class, 'destroy'])->name('supplier_docs.destroy');
+
+// หน้า Supplier List
+Route::get(
+    '/supplier_docs',
+    [SupplierDocumentController::class, 'suppliers']
+)->name('supplier_docs');
 
 
+// Data Supplier List
+Route::get(
+    '/supplier_docs/data',
+    [SupplierDocumentController::class, 'suppliers']
+)->name('supplier_docs.data');
+
+
+// เข้า Supplier แล้วดู Documents
+Route::get(
+    '/supplier_docs/{supplier_id}',
+    [SupplierDocumentController::class, 'documentList']
+)->name('supplier_docs.list');
+
+
+// Get Document สำหรับ Edit
+Route::get(
+    '/supplier_docs/get/{id}',
+    [SupplierDocumentController::class, 'getDocument']
+)->name('supplier_docs.get');
+
+
+// Save / Update
+Route::post(
+    '/supplier_docs/save',
+    [SupplierDocumentController::class, 'saveDocument']
+)->name('supplier_docs.save');
+
+
+// View File
+Route::get(
+    '/supplier_docs/view/{token}',
+    [SupplierDocumentController::class, 'view']
+)->name('supplier_docs.view');
+
+
+// Download File
+Route::get(
+    '/supplier_docs/download/{token}',
+    [SupplierDocumentController::class, 'download']
+)->name('supplier_docs.download');
+
+
+// Delete
+Route::delete(
+    '/supplier_docs/delete/{id}',
+    [SupplierDocumentController::class, 'destroy']
+)->name('supplier_docs.delete');
 
 
     // เอกสารบริษัท
@@ -216,25 +271,31 @@ Route::prefix('portal')->group(function () {
         // หน้าหลักหลัง Login (รายการไฟล์ทั้งหมด)
         Route::get('/download-list', [CustomerController::class, 'index'])->name('customer.dashboard');
 
-        // Route สำหรับโหลด GeoJSON (ที่คุณเขียน Logic ไว้ใน web.php)
-        Route::get('/download-geojson/{filename}', function ($filename) {
-            $path = public_path($filename);
-            if (file_exists($path)) {
-                // อย่าลืมใส่ Logic บันทึก Log ตรงนี้ด้วยครับ
-                return response()->download($path);
-            }
-            abort(404, 'ไม่พบไฟล์');
-        })->name('geojson.download')->where('filename', '.*');
+        // // Route สำหรับโหลด GeoJSON (ที่คุณเขียน Logic ไว้ใน web.php)
+        // Route::get('/download-geojson/{filename}', function ($filename) {
+        //     $path = public_path($filename);
+        //     if (file_exists($path)) {
+        //         // อย่าลืมใส่ Logic บันทึก Log ตรงนี้ด้วยครับ
+        //         return response()->download($path);
+        //     }
+        //     abort(404, 'ไม่พบไฟล์');
+        // })->name('geojson.download')->where('filename', '.*');
 
-        // Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
-        Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
-            ->name('company.docs.download');
+        // // Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
+        // Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
+        //     ->name('company.docs.download');
 
         // Logout สำหรับลูกค้า
         Route::get('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
     });
 });
+// Route สำหรับโหลด GeoJSON (ที่คุณเขียน Logic ไว้ใน web.php)
+Route::get('/download-geojson/{filename}', [InvoiceController::class, 'downloadGeojson'])
+    ->where('filename', '.*')
+    ->name('geojson.download');
 
-Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
-    ->name('company.docs.download');
+
+        // Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
+        Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
+            ->name('company.docs.download');
 //end-middleware

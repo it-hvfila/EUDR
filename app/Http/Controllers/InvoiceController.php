@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
-    public function index()
+        public function index()
     {
-        return view('Invoice');
+        return view('Invoice', [
+            'searched' => false,
+            'supplierData' => collect() // เปลี่ยนจาก suppliersWithDocs
+        ]);
     }
+
 
     public function search(Request $request)
     {
@@ -21,13 +25,13 @@ class InvoiceController extends Controller
 
         $packId = $request->pack_id;
 
-        // $url_pilot = 'https://erpepicor.hvfila.com/pilot/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
-        $url_production = 'https://erpepicor.hvfila.com/production/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
+        $url_pilot = 'https://erpepicor.hvfila.com/pilot/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
+        // $url_production = 'https://erpepicor.hvfila.com/production/api/v1/BaqSvc/HVF_PackInvoice_API2(164958)?';
 
         $response = Http::withBasicAuth(
             config('services.epicor.username'),
             config('services.epicor.password')
-        )->get($url_production, [
+        )->get($url_pilot, [
             'pack_id' => $packId
         ]);
 
@@ -124,30 +128,64 @@ class InvoiceController extends Controller
             return !empty($item['geojson']);
         });
 
+        /*
+        |--------------------------------------------------------------------------
+        | 4️⃣ ดึง Suppliers และเอกสารของ Supplier ตาม FG Lots
+        |--------------------------------------------------------------------------
+        */
+        $suppliers = DB::connection('mysql2')
+            ->table('compound_fg_links as fg')
+            ->join('compound_lots_links as cl', 'fg.cpd_id', '=', 'cl.id')
+            ->join('lots as l', 'cl.lot_id', '=', 'l.id')
+            ->join('suppliers as s', 'l.supplier_id', '=', 's.id')
+            ->whereIn('fg.fg_lot_no', $fgLots)
+            ->select('s.id', 's.supplier_code', 's.supplier_name')
+            ->distinct()
+            ->get();
+
+        $supplierData = $suppliers->map(function ($supplier) {
+            $docs = DB::connection('mysql2')
+                ->table('supplier_documents as sd')
+                ->join('document_categories as dc', 'sd.category_id', '=', 'dc.id')
+                ->where('sd.supplier_id', $supplier->id)
+                ->select('sd.*', 'dc.category_name', 'dc.report_section')
+                ->get()
+                ->keyBy('category_id'); // สำคัญ: ช่วยให้ Blade สามารถเรียก $docs[1], $docs[2] ตาม id หมวดหมู่ได้ทันที
+
+            return [
+                'supplier' => $supplier,
+                'docs' => $docs
+            ];
+        });
+
         $searched = true;
 
         return view('Invoice', [
-            'header'      => $header,
-            'details'     => $details,
-            'packId'      => $packId,
-            'hasGeoJson'  => $hasGeoJson,
-            'searched'    => $searched
+            'header'            => $header,
+            'details'           => $details,
+            'packId'            => $packId,
+            'hasGeoJson'        => $hasGeoJson,
+            'searched'          => $searched,
+            'supplierData'      => $supplierData // ส่งตัวแปรชื่อนี้ไปให้ Blade
         ]);
     }
 
-    public function download($token)
-    {
-        $doc = DB::connection('mysql2')
-            ->table('company_documents')
-            ->where('token', $token)
-            ->first();
 
-        if (!$doc) {
-            abort(404);
-        }
 
-        $path = storage_path('app/private/company_docs/' . $doc->file_name);
+    public function downloadGeojson($filename)
+{
+    // แปลง path ให้เป็น path ภายใน public เท่านั้น
+    $filename = ltrim($filename, '/');
 
-        return response()->download($path, $doc->original_name);
+    $path = public_path($filename);
+
+    // Debug ชั่วคราว
+    if (!file_exists($path)) {
+        abort(404, 'ไม่พบไฟล์: ' . $path);
     }
+
+    return response()->download($path, basename($path), [
+        'Content-Type' => 'application/octet-stream',
+    ]);
+}
 }

@@ -379,7 +379,7 @@
                                 </td>
                             </tr>
 
-                            {{-- 3. Geodata --}}
+                                                        {{-- 3. Geodata --}}
                             <tr class="section-bar">
                                 <td colspan="3">Geodata and Traceability</td>
                             </tr>
@@ -393,12 +393,13 @@
 
                                         @if (!empty($d['geojson']) && count($d['geojson']) > 0)
                                             @foreach ($d['geojson'] as $file)
-                                                <a href="{{ route('geojson.download', ['filename' => $file]) }}"
-                                                    class="link-text" target="_self"> {{-- ใน PDF ใช้ _self จะเสถียรกว่า --}}
+                                                {{-- ใส่ลิงก์ดาวน์โหลดตรงนี้ --}}
+                                                <a href="{{ url($file) }}" target="_blank" class="link-text">
                                                     Appx #{{ $appx++ }} GeoJSON file
-                                                </a>
-                                                <br>
+                                                </a><br>
                                             @endforeach
+                                        @else
+                                            -
                                         @endif
 
                                     </td>
@@ -423,6 +424,7 @@
                             @endforeach
 
 
+
                             {{-- 4. Deforestation --}}
                             <tr class="section-bar">
                                 <td colspan="3">Deforestation – free Verification</td>
@@ -443,486 +445,244 @@
                                         class="link-text">https://change.forest.go.th</a></td>
                             </tr>
 
-                            {{-- 5. Legal Compliance --}}
+                                                       {{-- 5. Legal Compliance --}}
                             <tr class="compliance-bar">
                                 <td colspan="3">Compliant with the laws of the country of production (Legal Compliance
                                     Verification)</td>
                             </tr>
-                            <tr>
-                                <td class="level-1"><strong>- Production (Chain of Custody #1): </strong></td>
-                                <td><span class="red-bold">Non FSC (Company
-                                        A)</span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Operation regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Business registration</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf">In
-                                        accordance with Section 1097³ of the Civil Code</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/ccd7458cb2') }}">Appx #{{ $appx++ }}
-                                        Business
-                                        Registration Certificate</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Factory license</td>
-                                <td class="link-text"><a
-                                        href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf">In
-                                        accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
-                                </td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/53cf4e48cf') }}">Appx #{{ $appx++ }}
-                                        Factory
-                                        license</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Environment regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Wastewater Treatment Plant</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf">In accordance
-                                        with Section 70 of the Enhancement and Conservation of
-                                        National Environmental Quality Act, B.E. 2535 (1992)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/b7e53d08c4') }}">Appx #{{ $appx++ }}
-                                        Wastewater
-                                        Treatment Plant</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Water Pollution</td>
-                                <td class="link-text"><a
-                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
-                                        accordance with Section 68 Enhancement and Conservation of
-                                        National
-                                        Environmental Quality Act B.E. 2535</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/a9b90478e3') }}">Appx #{{ $appx++ }}
-                                        Water
-                                        Pollution Discharge Report (Form Ror Wor 2)</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Air Pollution</td>
-                                <td class="link-text"><a
-                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
-                                        accordance with Section 68 Enhancement and Conservation of
-                                        National
-                                        Environmental Quality Act B.E. 2535</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/3a356e41a0') }}">Appx #{{ $appx++ }}
-                                        Air Pollution
-                                        Emission Report (Form Ror Wor 3)</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Labor right regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Employer Registration for Social Security</td>
-                                <td class="link-text"><a
-                                        href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
-                                        accordance with Section 36 of the Social
-                                        Security Act B.E. 2533"
-                                        (1990)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/07d6d1e923') }}">Appx #{{ $appx++ }}
-                                        Social
-                                        Security Certificate of Registration</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
-                                <td class="link-text"><a
-                                        href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a">In
-                                        accordance with Section 155/1 of the Labour Protection Act, B.E.
-                                        2541 (1998)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/591ce55991') }}">Appx #{{ $appx++ }} -
-                                        KR 11</a>
-                                </td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Foreigner Workers</td>
-                                <td class="link-text"><a
-                                        href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
-                                        of Foreign Workers 2023 According to the Cabinet
-                                        Resolution of July 5, 2023</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/f3ce181606') }}">Appx #{{ $appx++ }}
-                                        Foreigner
-                                        Workers List</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Occupational Health and Safety regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- License for Operating Health Hazardous Activities.</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
-                                        target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
-                                        (1992) and Amendments</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/6aa4254141') }}">Appx #{{ $appx++ }}
-                                        License for
-                                        Operating Health Hazardous Activities.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
-                                <td class="link-text"><a
-                                        href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
-                                        target="_blank">In accordance with Section 2 of the Ministerial Regulation on
-                                        Standards for the Administration and Management of Occupational Safety, Health, and
-                                        Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/5436ecd643') }}">Appx #{{ $appx++ }}
-                                        Safety
-                                        Committees</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Fire Fighting and Evacuation</td>
-                                <td class="link-text"><a
-                                        href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
-                                        target="_blank">In accordance with Section 30 of the Ministry Regulation on
-                                        Standards for the Administration and Management of Occupational Safety, Health, and
-                                        Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/198b38e1b7') }}">Annex #{{ $appx++ }}
-                                        Firefighting
-                                        and Fire Evacuation</a></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Hazardous Material Possession License</td>
-                                <td class="link-text"><a
-                                        href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
-                                        target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
-                                        2535 (1992)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/0c66349597') }}">Annex #{{ $appx++ }}
-                                        Hazardous
-                                        Material Possession License</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Trade, tax and customs regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
-                                <td class="link-text"><a
-                                        href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
-                                        target="_blank">In
-                                        accordance with the Measurement Act B.E. 2542 (1999)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/e8a5056e1b') }}">Annex #{{ $appx++ }}
-                                        Calibration
-                                        of Weighing and Measuring Instruments</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Certificate of Value Added Tax Registration</td>
-                                <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
-                                        target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/ccd300cfcf') }}">Annex #{{ $appx++ }}
-                                        Certificate
-                                        of Value Added Tax Registration</a></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Natural Rubber Trading License</td>
-                                <td class="link-text"><a
-                                        href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
-                                        target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
-                                        (1999)</a>
-                                </td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/6d0d3f91b1') }}">Annex #{{ $appx++ }}
-                                        Natural
-                                        Rubber Trading License</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Legal Compliance at plots level</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Legal compliance verification for each rubber plantation used for
-                                    production</td>
-                                <td class="link-text">The legal complaints at the plot level have been verified, and the
-                                    results are described in a GeoJSON file</td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/0cd09dd8f8') }}">Annex #{{ $appx++ }}
-                                        Legal
-                                        Compliance Verification for Rubber Plantations</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Others</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- ISO 9001 Certificate</td>
-                                <td class="link-text"></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/7129af1076') }}">Annex #{{ $appx++ }}
-                                        ISO 9001
-                                        Certificate</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-1"><strong>- Production (Chain of Custody #2): </strong></td>
-                                <td><span class="red-bold">FSC (Company B) </span></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Operation regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Business registration</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf">In
-                                        accordance with Section 1097³ of the Civil Code</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/ccd7458cb2') }}">Annex #{{ $appx++ }}
-                                        Business
-                                        Registration Certificate</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Factory license</td>
-                                <td class="link-text"><a
-                                        href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf">In
-                                        accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
-                                </td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/53cf4e48cf') }}">Annex #{{ $appx++ }}
-                                        Factory
-                                        license</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Environment regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Wastewater Treatment Plant</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf">accordance
-                                        with Section 70 of the Enhancement and Conservation of
-                                        National Environmental Quality Act, B.E. 2535 (1992)</a>In
-                                </td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/b7e53d08c4') }}">Annex #{{ $appx++ }}
-                                        Wastewater
-                                        Treatment Plant</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Water Pollution</td>
-                                <td class="link-text"><a
-                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
-                                        accordance with Section 68 Enhancement and Conservation of
-                                        National
-                                        Environmental Quality Act B.E. 2535</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/a9b90478e3') }}">Annex #{{ $appx++ }}
-                                        Water
-                                        Pollution Discharge Report (Form Ror Wor 2)</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Air Pollution</td>
-                                <td class="link-text"><a
-                                        href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act">In
-                                        accordance with Section 68 Enhancement and Conservation of
-                                        National
-                                        Environmental Quality Act B.E. 2535</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/3a356e41a0') }}">Annex #{{ $appx++ }}
-                                        Air
-                                        Pollution Emission Report (Form Ror Wor 3)</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Labor right regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Employer Registration for Social Security</td>
-                                <td class="link-text"><a
-                                        href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf">In
-                                        accordance with Section 36 of the Social Security Act B.E. 2533"
-                                        (1990)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/07d6d1e923') }}">Annex #{{ $appx++ }}
-                                        Social
-                                        Security Certificate of Registration</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
-                                <td class="link-text"><a
-                                        href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a">In
-                                        accordance with Section 155/1 of the Labour Protection Act, B.E.
-                                        2541 (1998)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/591ce55991') }}">Annex #{{ $appx++ }} -
-                                        KR 11</a>
-                                </td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Foreigner Workers</td>
-                                <td class="link-text"><a
-                                        href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769">Registration
-                                        of Foreign Workers 2023 According to the Cabinet
-                                        Resolution of July 5, 2023</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/f3ce181606') }}">Annex #{{ $appx++ }}
-                                        Foreigner
-                                        Workers List</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Occupational Health and Safety regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- License for Operating Health Hazardous Activities.</td>
-                                <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
-                                        target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
-                                        (1992) and Amendments</td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/6aa4254141') }}">Annex #{{ $appx++ }}
-                                        License for
-                                        Operating Health Hazardous Activities.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
-                                <td class="link-text"><a
-                                        href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
-                                        target="_blank">In accordance with Section 2 of the Ministerial Regulation on
-                                        Standards for the Administration and Management of Occupational Safety, Health, and
-                                        Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/5436ecd643') }}">Annex #{{ $appx++ }}
-                                        Safety
-                                        Committees</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Fire Fighting and Evacuation</td>
-                                <td class="link-text"><a
-                                        href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
-                                        target="_blank">In accordance with Section 30 of the Ministry Regulation on
-                                        Standards for the Administration and Management of Occupational Safety, Health, and
-                                        Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/198b38e1b7') }}">Annex #{{ $appx++ }}
-                                        Firefighting
-                                        and Fire Evacuation</a></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Hazardous Material Possession License</td>
-                                <td class="link-text"><a
-                                        href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
-                                        target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
-                                        2535 (1992)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/0c66349597') }}">Annex #{{ $appx++ }}
-                                        Hazardous
-                                        Material Possession License</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Trade, tax and customs regulations</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
-                                <td class="link-text"><a
-                                        href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
-                                        target="_blank">In
-                                        accordance with the Measurement Act B.E. 2542 (1999)</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/e8a5056e1b') }}">Annex #{{ $appx++ }}
-                                        Calibration
-                                        of Weighing and Measuring Instruments</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Certificate of Value Added Tax Registration</td>
-                                <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
-                                        target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/ccd300cfcf') }}">Annex #{{ $appx++ }}
-                                        Certificate
-                                        of Value Added Tax Registration</a></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Natural Rubber Trading License</td>
-                                <td class="link-text"><a
-                                        href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
-                                        target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
-                                        (1999)</a>
-                                </td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/6d0d3f91b1') }}">Annex #{{ $appx++ }}
-                                        Natural
-                                        Rubber Trading License</a></td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Legal Compliance at plots level</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Legal compliance verification for each rubber plantation used for
-                                    production</td>
-                                <td class="link-text">The legal complaints at the plot level have been verified, and the
-                                    results are described in a GeoJSON file</td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/0cd09dd8f8') }}">Annex #{{ $appx++ }}
-                                        Legal
-                                        Compliance Verification for Rubber Plantations</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-2"><strong>- Others</strong></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- ISO 9001 Certificate</td>
-                                <td class="link-text"></td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/7129af1076') }}">Annex #{{ $appx++ }}
-                                        ISO 9001
-                                        Certificate</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="level-3">- Forest Certificate</td>
-                                <td class="link-text">FSC Forest Management</td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/dad8ea5689') }}">Annex #{{ $appx++ }}
-                                        Forest
-                                        Certificate FM</a></td>
-                            </tr>
-                            <tr class="border-bottom-row">
-                                <td class="level-3">- Forest Certificate</td>
-                                <td class="link-text">FSC Chain of Custody</td>
-                                <td style="text-align: center;"><a
-                                        href="{{ url('company_docs/download/dad8ea5689') }}">Annex #{{ $appx++ }}
-                                        Forest
-                                        Certificate COC</a></td>
-                            </tr>
+
+                            @php $cocNumber = 1; @endphp
+
+                            @if (!empty($supplierData))
+                                @foreach ($supplierData as $supItem)
+                                    @php
+                                        $sup = $supItem['supplier'];
+                                        $docs = $supItem['docs'];
+                                    @endphp
+                                    <tr>
+                                        <td class="level-1"><strong>- Production (Chain of Custody #{{ $cocNumber++ }}): </strong></td>
+                                        <td><span class="red-bold">{{ $sup->supplier_name }} ({{ $sup->supplier_code }})</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Operation regulations</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Business registration</td>
+                                        <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha200357.pdf" target="_blank">In
+                                                accordance with Section 1097³ of the Civil Code</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[1])) <a href="{{ route('supplier_docs.download', $docs[1]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[1]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Factory license</td>
+                                        <td class="link-text"><a
+                                                href="http://reg3.diw.go.th/legal/wp-content/uploads/2017/05/fac-en.pdf" target="_blank">In
+                                                accordance with Section 12 of the Factory Act B.E. 2535 (1992)</a>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[2])) <a href="{{ route('supplier_docs.download', $docs[2]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[2]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Environment regulations</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Wastewater Treatment Plant</td>
+                                        <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha19415.pdf" target="_blank">In accordance
+                                                with Section 70 of the Enhancement and Conservation of
+                                                National Environmental Quality Act, B.E. 2535 (1992)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[3])) <a href="{{ route('supplier_docs.download', $docs[3]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[3]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Water Pollution</td>
+                                        <td class="link-text"><a
+                                                href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act" target="_blank">In
+                                                accordance with Section 68 Enhancement and Conservation of
+                                                National
+                                                Environmental Quality Act B.E. 2535</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[4])) <a href="{{ route('supplier_docs.download', $docs[4]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[4]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Air Pollution</td>
+                                        <td class="link-text"><a
+                                                href="https://data.opendevelopmentmekong.net/th/laws_record/enhancement-and-conservation-of-national-environmental-quality-act" target="_blank">In
+                                                accordance with Section 68 Enhancement and Conservation of
+                                                National
+                                                Environmental Quality Act B.E. 2535</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[5])) <a href="{{ route('supplier_docs.download', $docs[5]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[5]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Labor right regulations</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Employer Registration for Social Security</td>
+                                        <td class="link-text"><a
+                                                href="https://www.mol.go.th/wp-content/uploads/sites/2/2019/07/social_security_act_2533_sso_1.pdf" target="_blank">In
+                                                accordance with Section 36 of the Social
+                                                Security Act B.E. 2533"
+                                                (1990)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[6])) <a href="{{ route('supplier_docs.download', $docs[6]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[6]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Employment and Working Conditions Declaration Form (KR 11)</td>
+                                        <td class="link-text"><a
+                                                href="https://data.thailand.opendevelopmentmekong.net/th/laws_record/labour-protection-act-b-e-2541-2008-with-updates-as-of-2017/resource/6169fd03-eae9-49b0-920c-b6ca109a9e0a" target="_blank">In
+                                                accordance with Section 155/1 of the Labour Protection Act, B.E.
+                                                2541 (1998)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[7])) <a href="{{ route('supplier_docs.download', $docs[7]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[7]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom-row">
+                                        <td class="level-3">- Foreigner Workers</td>
+                                        <td class="link-text"><a
+                                                href="https://www.doe.go.th/prd/chiangmai/news/param/site/111/cat/7/sub/0/pull/detail/view/detail/object_id/72769" target="_blank">Registration
+                                                of Foreign Workers 2023 According to the Cabinet
+                                                Resolution of July 5, 2023</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[8])) <a href="{{ route('supplier_docs.download', $docs[8]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[8]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Occupational Health and Safety regulations</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- License for Operating Health Hazardous Activities.</td>
+                                        <td class="link-text"><a href="https://faolex.fao.org/docs/pdf/tha209339.pdf"
+                                                target="_blank">In accordance with Section 32 of the Public Health Act B.E. 2535
+                                                (1992) and Amendments</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[9])) <a href="{{ route('supplier_docs.download', $docs[9]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[9]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Appointment of the Occupational Health and Safety Committee</td>
+                                        <td class="link-text"><a
+                                                href="https://www.tosh.or.th/images/file/2020/k2-816.pdf?_t=1602038342"
+                                                target="_blank">In accordance with Section 2 of the Ministerial Regulation on
+                                                Standards for the Administration and Management of Occupational Safety, Health, and
+                                                Environmental Conditions in the Workplace B.E. 2549 (2006)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[10])) <a href="{{ route('supplier_docs.download', $docs[10]->token) }}" target="_blank">Appx #{{ $appx++ }} {{ $docs[10]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Fire Fighting and Evacuation</td>
+                                        <td class="link-text"><a
+                                                href="https://www.ratchakitcha.soc.go.th/DATA/PDF/2556/A/002/24.PDF"
+                                                target="_blank">In accordance with Section 30 of the Ministry Regulation on
+                                                Standards for the Administration and Management of Occupational Safety, Health, and
+                                                Environmental Conditions in the Workplace B.E. 2556 (2013)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[11])) <a href="{{ route('supplier_docs.download', $docs[11]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[11]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom-row">
+                                        <td class="level-3">- Hazardous Material Possession License</td>
+                                        <td class="link-text"><a
+                                                href="https://www.diw.go.th/webdiw/wp-content/uploads/2021/07/law-haz-29032535-eng.pdf"
+                                                target="_blank">In accordance with Section 18 of the Hazardous Substance Act B.E.
+                                                2535 (1992)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[12])) <a href="{{ route('supplier_docs.download', $docs[12]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[12]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Trade, tax and customs regulations</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Calibration of Weighing and Measuring Instruments</td>
+                                        <td class="link-text"><a
+                                                href="https://law.dit.go.th/Upload/Document/d24f4df6-9cad-4644-871b-a627c881970e.pdf"
+                                                target="_blank">In
+                                                accordance with the Measurement Act B.E. 2542 (1999)</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[13])) <a href="{{ route('supplier_docs.download', $docs[13]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[13]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Certificate of Value Added Tax Registration</td>
+                                        <td class="link-text"><a href="https://www.rd.go.th/english/37718.html"
+                                                target="_blank">In accordance with Revenue Code Section 4 Value Added Tax</a></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[14])) <a href="{{ route('supplier_docs.download', $docs[14]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[14]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom-row">
+                                        <td class="level-3">- Natural Rubber Trading License</td>
+                                        <td class="link-text"><a
+                                                href="https://www.doa.go.th/th/wp-content/uploads/2020/11/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B1%E0%B8%95%E0%B8%B4%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B8%A2%E0%B8%B2%E0%B8%87-%E0%B8%9E.%E0%B8%A8.-2542-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B8%AD%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%A4%E0%B8%A9.pdf"
+                                                target="_blank">In accordance with Section 22 the Rubber Control Act B.E. 2542
+                                                (1999)</a>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[15])) <a href="{{ route('supplier_docs.download', $docs[15]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[15]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Legal Compliance at plots level</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="border-bottom-row">
+                                        <td class="level-3">- Legal compliance verification for each rubber plantation used for
+                                            production</td>
+                                        <td class="link-text">The legal complaints at the plot level have been verified, and the
+                                            results are described in a GeoJSON file</td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[16])) <a href="{{ route('supplier_docs.download', $docs[16]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[16]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-2"><strong>- Others</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- ISO 9001 Certificate</td>
+                                        <td class="link-text"></td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[17])) <a href="{{ route('supplier_docs.download', $docs[17]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[17]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="level-3">- Forest Certificate</td>
+                                        <td class="link-text">FSC Forest Management</td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[18])) <a href="{{ route('supplier_docs.download', $docs[18]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[18]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom-row">
+                                        <td class="level-3">- Forest Certificate</td>
+                                        <td class="link-text">FSC Chain of Custody</td>
+                                        <td style="text-align: center;">
+                                            @if(isset($docs[19])) <a href="{{ route('supplier_docs.download', $docs[19]->token) }}" target="_blank">Annex #{{ $appx++ }} {{ $docs[19]->doc_name }}</a> @else - @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
                             <tr>
                                 <td class="level-1"><strong>- Production (Chain of Custody #3): </strong></td>
                                 <td><span class="red-bold">H.V. Fila Co.,Ltd </span></td>

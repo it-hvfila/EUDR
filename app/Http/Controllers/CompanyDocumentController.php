@@ -11,8 +11,10 @@ class CompanyDocumentController extends Controller
     public function index(Request $request)
     {
         $documents = DB::connection('mysql2')
-            ->table('company_documents')
-            ->orderBy('created_at', 'desc');
+            ->table('company_documents as cd')
+            ->leftJoin('document_categories as dc', 'cd.category_id', '=', 'dc.id')
+            ->select('cd.*', 'dc.category_name', 'dc.report_section')
+            ->orderBy('cd.created_at', 'desc');
 
         if ($request->ajax()) {
             return DataTables::of($documents)
@@ -40,7 +42,9 @@ class CompanyDocumentController extends Controller
                 ->make(true);
         }
 
-        return view('company_documents');
+        $categories = DB::connection('mysql2')->table('document_categories')->get();
+
+        return view('company_documents', compact('categories'));
     }
 
     public function getDocument($id)
@@ -56,12 +60,14 @@ class CompanyDocumentController extends Controller
     {
         $request->validate([
             'doc_name' => 'required|string',
+            'category_id' => 'required|integer',
             'file_input' => 'nullable|file|max:10240',
             'description' => 'nullable|string',
         ]);
 
         $data = [
             'doc_name' => $request->doc_name,
+            'category_id' => $request->category_id,
             'description' => $request->description,
             'upload_by' => session('users.name') ?? 'system',
         ];

@@ -52,7 +52,8 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Title</th>
-                                                <th scope="col">token</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Token</th>
                                                 <th scope="col">รายละเอียด</th>
                                                 <th scope="col">วันที่</th>
                                                 <th scope="col">upload_by</th>
@@ -91,6 +92,16 @@
                                 <div class="mb-3">
                                     <label for="doc_name" class="form-label">Title</label>
                                     <input type="text" class="form-control" name="doc_name" id="doc_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_id" class="form-label">Report Category</label>
+                                    <select class="form-select" name="category_id" id="category_id" required>
+                                        <option value="">-- Select Category --</option>
+                                        @foreach ($categories as $cat)
+                                            <option value="{{ $cat->id }}">{{ $cat->report_section }} -
+                                                {{ $cat->category_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="file_input" class="form-label">File</label>
@@ -132,27 +143,31 @@
                 ajax: "{{ route('company_docs.data') }}",
                 columns: [{
                         data: 'id',
-                        name: 'id'
+                        name: 'cd.id'
                     },
                     {
                         data: 'doc_name',
-                        name: 'doc_name'
+                        name: 'cd.doc_name'
+                    },
+                    {
+                        data: 'category_name',
+                        name: 'dc.category_name'
                     },
                     {
                         data: 'token',
-                        name: 'token'
+                        name: 'cd.token'
                     },
                     {
                         data: 'description',
-                        name: 'description'
+                        name: 'cd.description'
                     },
                     {
                         data: 'created_at',
-                        name: 'created_at'
+                        name: 'cd.created_at'
                     },
                     {
                         data: 'upload_by',
-                        name: 'upload_by'
+                        name: 'cd.upload_by'
                     },
                     {
                         data: 'Detail',
@@ -202,6 +217,7 @@
                     // ใส่ข้อมูลเดิมใน modal
                     $('#doc_id').val(data.id);
                     $('#doc_name').val(data.doc_name);
+                    $('#category_id').val(data.category_id);
                     $('#description').val(data.description);
 
                     // ปรับหัว modal และปุ่ม

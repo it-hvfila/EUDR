@@ -26,12 +26,17 @@ class SupplierController extends Controller
                 ->addIndexColumn()
                 ->addColumn('Detail', function ($record) {
                     return '
-                <a href="' . url('supplier/' . $record->id . '/lots') . '" class="btn btn-sm btn-primary">
-                    View Lots
-                </a>
-                <button class="btn btn-sm btn-danger btn-delete" data-id="' . $record->id . '">
-                    Delete
-                </button>
+                <div class="d-flex gap-1">
+                    <a href="' . url('supplier/' . $record->id . '/lots') . '" class="btn btn-sm btn-primary">
+                        View Lots
+                    </a>
+                    <a href="' . url('supplier/' . $record->id . '/documents') . '" class="btn btn-sm btn-success text-white">
+                        Documents
+                    </a>
+                    <button class="btn btn-sm btn-danger btn-delete" data-id="' . $record->id . '">
+                        Delete
+                    </button>
+                </div>
                 ';
                 })
                 ->rawColumns(['Detail'])

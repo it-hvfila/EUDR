@@ -102,51 +102,62 @@ class LotController extends Controller
 
         return response()->json($files);
     }
-    //อัปโหลดไฟล์สำหรับ Lot
-    public function uploadLotFile(Request $request, $id)
-    {
-        $file = $request->file('file'); // fileinput async จะส่งทีละไฟล์
-        if (!$file) {
-            return response()->json(['success' => false, 'message' => 'No file received'], 400);
-        }
+public function uploadLotFile(Request $request, $id)
+{
+    $file = $request->file('file'); // fileinput async จะส่งทีละไฟล์
 
-        // 🔹 ดึง lot_number ของ lot นี้
-        $lot = DB::connection('mysql2')->table('lots')->where('id', $id)->first();
-        if (!$lot) {
-            return response()->json(['success' => false, 'message' => 'Lot not found'], 404);
-        }
-
-        $lotNumber = $lot->lot_number;
-
-        // 🔹 สร้าง folder ถ้ายังไม่มี
-        $uploadPath = public_path('uploads/lots');
-        if (!file_exists($uploadPath)) mkdir($uploadPath, 0777, true);
-
-        // 🔹 ตั้งชื่อไฟล์: lot_number_YYYYMMDD_His_สุ่ม.ext
-        $dateCode = now()->format('Ymd_His'); // วันที่เวลา
-        $uniqueCode = substr(md5(uniqid()), 0, 6); // รหัสสุ่ม 6 ตัว
-        $extension = $file->getClientOriginalExtension();
-        $fileName = $lotNumber . '_' . $dateCode . '_' . $uniqueCode . '.' . $extension;
-
-        // 🔹 ย้ายไฟล์
-        $file->move($uploadPath, $fileName);
-
-        $fileSizeMB = round(filesize($uploadPath . '/' . $fileName) / 1024 / 1024, 2);
-
-        try {
-            DB::connection('mysql2')->table('lot_files')->insert([
-                'lot_id'      => $id,
-                'file_name'   => $fileName,
-                'file_size'   => $fileSizeMB,
-                'file_path'   => 'uploads/lots/' . $fileName,
-                'created_at'  => now(),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
-        }
-
-        return response()->json(['success' => true]);
+    if (!$file) {
+        return response()->json(['success' => false, 'message' => 'No file received'], 400);
     }
+
+    // 🔹 ดึง lot_number ของ lot นี้
+    $lot = DB::connection('mysql2')->table('lots')->where('id', $id)->first();
+
+    if (!$lot) {
+        return response()->json(['success' => false, 'message' => 'Lot not found'], 404);
+    }
+
+    // ⭐ แปลง / และอักขระพิเศษใน lot_number ให้เป็น _ เพื่อป้องกันปัญหา path ในระบบไฟล์
+    $lotNumber = preg_replace('/[^A-Za-z0-9_\-]/', '_', $lot->lot_number);
+
+    // 🔹 คำนวณขนาดไฟล์จากตัวไฟล์ที่อัปโหลดโดยตรง (MB)
+    $fileSizeMB = round($file->getSize() / 1024 / 1024, 2);
+
+    // 🔹 สร้าง folder ถ้ายังไม่มี
+    $uploadPath = public_path('uploads/lots');
+    if (!file_exists($uploadPath)) {
+        mkdir($uploadPath, 0777, true);
+    }
+
+    // 🔹 ตั้งชื่อไฟล์: lot_number_YYYYMMDD_His_สุ่ม.ext
+    $dateCode = now()->format('Ymd_His'); // วันที่เวลา
+    $uniqueCode = substr(md5(uniqid()), 0, 6); // รหัสสุ่ม 6 ตัว
+    $extension = $file->getClientOriginalExtension();
+    $fileName = $lotNumber . '_' . $dateCode . '_' . $uniqueCode . '.' . $extension;
+
+    // 🔹 ย้ายไฟล์
+    $file->move($uploadPath, $fileName);
+
+    try {
+        DB::connection('mysql2')->table('lot_files')->insert([
+            'lot_id'     => $id,
+            'file_name'  => $fileName,
+            'file_size'  => $fileSizeMB,
+            'file_path'  => 'uploads/lots/' . $fileName,
+            'created_at' => now(),
+        ]);
+    } catch (\Exception $e) {
+        // หาก Insert ลง DB พลาด ลบไฟล์ที่เพิ่งย้ายไปเพื่อไม่ให้มีไฟล์ขยะ
+        if (file_exists($uploadPath . '/' . $fileName)) {
+            unlink($uploadPath . '/' . $fileName);
+        }
+
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+
+    return response()->json(['success' => true]);
+}
+
 
     //ลบไฟล์ Lot
     public function deleteFile($id)
