@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // EUDR uses session login and has no personal_access_tokens table.
+        \Laravel\Sanctum\Sanctum::ignoreMigrations();
     }
 
     /**
