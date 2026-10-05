@@ -65,6 +65,14 @@ class LotController extends Controller
             'supplier_code' => $supplier ? $supplier->supplier_code : 'Unknown Supplier',
         ]);
     }
+    public function downloadFile(Request $request, $id)
+    {
+        $file = DB::connection('mysql2')->table('lot_files')->where('id', $id)->first();
+        abort_unless($file, 404);
+        $path = \App\Services\PrivateReportFiles::existing($file->file_path);
+        return $request->boolean('preview') ? response()->file($path) : response()->download($path, $file->file_name);
+    }
+
     public function show($id)
     {
         $lot = DB::connection('mysql2')->table('lots')->where('id', $id)->first();
@@ -124,9 +132,9 @@ public function uploadLotFile(Request $request, $id)
     $fileSizeMB = round($file->getSize() / 1024 / 1024, 2);
 
     // 🔹 สร้าง folder ถ้ายังไม่มี
-    $uploadPath = public_path('uploads/lots');
+    $uploadPath = storage_path('app/private/uploads/lots');
     if (!file_exists($uploadPath)) {
-        mkdir($uploadPath, 0777, true);
+        mkdir($uploadPath, 0750, true);
     }
 
     // 🔹 ตั้งชื่อไฟล์: lot_number_YYYYMMDD_His_สุ่ม.ext
@@ -162,10 +170,11 @@ public function uploadLotFile(Request $request, $id)
     //ลบไฟล์ Lot
     public function deleteFile($id)
     {
+        \App\Services\PrivateReportFiles::assertUnlinked('lot_file_id', [$id]);
         $file = DB::connection('mysql2')->table('lot_files')->where('id', $id)->first();
 
         if ($file) {
-            $filePath = public_path($file->file_path);
+            $filePath = \App\Services\PrivateReportFiles::path($file->file_path);
 
             // ลบไฟล์จริงถ้ามีอยู่
             if (file_exists($filePath) && is_file($filePath)) {
@@ -229,8 +238,10 @@ public function uploadLotFile(Request $request, $id)
         // 1️⃣ ดึงไฟล์ทั้งหมดของ lot
         $files = DB::connection('mysql2')->table('lot_files')->where('lot_id', $id)->get();
 
+        \App\Services\PrivateReportFiles::assertUnlinked('lot_file_id', $files->pluck('id')->all());
+
         foreach ($files as $file) {
-            $filePath = public_path($file->file_path); // ตัวอย่าง: public/uploads/lots/filename.pdf
+            $filePath = \App\Services\PrivateReportFiles::path($file->file_path); // ตัวอย่าง: public/uploads/lots/filename.pdf
             // ลบไฟล์จริงในเซิร์ฟเวอร์ถ้ามี
             if (file_exists($filePath)) {
                 unlink($filePath);

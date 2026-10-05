@@ -21,8 +21,9 @@ WORKDIR /var/www
 # ก๊อปปี้ไฟล์โปรเจกต์ทั้งหมดเข้าตู้
 COPY . .
 
-# สั่งติดตั้ง Dependencies ของ Laravel
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# ล้างแคชเก่าที่อาจติดมา และติดตั้ง Dependencies (เอา --no-dev ออกสำหรับ environment เครื่องเทส)
+RUN rm -f bootstrap/cache/*.php && \
+    composer install --optimize-autoloader --no-interaction
 
 # ตั้งสิทธิ์โฟลเดอร์ Storage และ Cache ให้ Laravel ทำงานได้
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache

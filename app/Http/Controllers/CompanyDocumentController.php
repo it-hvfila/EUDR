@@ -65,6 +65,10 @@ class CompanyDocumentController extends Controller
             'description' => 'nullable|string',
         ]);
 
+        if ($request->doc_id) {
+            \App\Services\PrivateReportFiles::assertUnlinked('company_document_id', [$request->doc_id]);
+        }
+
         $data = [
             'doc_name' => $request->doc_name,
             'category_id' => $request->category_id,
@@ -78,12 +82,12 @@ class CompanyDocumentController extends Controller
             $ext = $file->getClientOriginalExtension();
 
             // ตั้งชื่อไฟล์ให้ไม่ซ้ำ
-            $filename = $request->doc_name . '_' . now()->format('Ymd_His') . '_' . substr(md5(uniqid()), 0, 6) . '.' . $ext;
+            $filename = (string) \Illuminate\Support\Str::uuid().'.'.$file->extension();
 
             // 🔹 สร้างโฟลเดอร์ย่อย: uploads/company_doc/
-            $uploadPath = public_path('uploads/company_doc');
+            $uploadPath = storage_path('app/private/uploads/company_doc');
             if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
+                mkdir($uploadPath, 0750, true);
             }
 
             // 🔹 ย้ายไฟล์ไปเก็บในโฟลเดอร์ย่อย
@@ -112,7 +116,7 @@ class CompanyDocumentController extends Controller
     {
         $doc = DB::connection('mysql2')->table('company_documents')->where('token', $token)->first();
         if (!$doc) abort(404, 'File not found');
-        $path = public_path($doc->file_path);
+        $path = \App\Services\PrivateReportFiles::existing($doc->file_path);
         if (!file_exists($path)) abort(404, 'File not found on server');
         return response()->file($path);
     }
@@ -121,16 +125,17 @@ class CompanyDocumentController extends Controller
     {
         $doc = DB::connection('mysql2')->table('company_documents')->where('token', $token)->first();
         if (!$doc) abort(404, 'File not found');
-        $path = public_path($doc->file_path);
+        $path = \App\Services\PrivateReportFiles::existing($doc->file_path);
         if (!file_exists($path)) abort(404, 'File not found on server');
         return response()->download($path, $doc->doc_name . '.' . pathinfo($doc->file_path, PATHINFO_EXTENSION));
     }
 
     public function destroy($id)
     {
+        \App\Services\PrivateReportFiles::assertUnlinked('company_document_id', [$id]);
         $doc = DB::connection('mysql2')->table('company_documents')->where('id', $id)->first();
         if ($doc) {
-            $path = public_path($doc->file_path);
+            $path = \App\Services\PrivateReportFiles::path($doc->file_path);
             if (file_exists($path)) unlink($path);
             DB::connection('mysql2')->table('company_documents')->where('id', $id)->delete();
         }

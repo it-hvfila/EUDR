@@ -1,1 +1,4 @@
-db_data
+vendor
+bootstrap/cache/*.php
+.git
+.env

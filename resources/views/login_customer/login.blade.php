@@ -11,7 +11,7 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="" class="logo d-flex align-items-center w-auto">
-                                    <span class="d-none d-lg-block">Customer EURD Portal</span>
+                                    <span class="d-none d-lg-block">Customer EUDR Portal</span>
                                 </a>
                             </div>
 
@@ -23,13 +23,13 @@
                                     </div>
 
                                     {{-- id="customer_login_form" --}}
-                                    <form class="row g-3 needs-validation" novalidate id="customer_login_form">
+                                    <form class="row g-3 needs-validation" id="customer_login_form">
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text">@</span>
-                                                <input type="text" name="username" class="form-control" id="yourUsername"
+                                                <input type="text" name="username" class="form-control" id="yourUsername" autocomplete="username" maxlength="100"
                                                     required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
@@ -39,7 +39,7 @@
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <div class="input-group">
                                                 <input type="password" name="password" class="form-control"
-                                                    id="passwordlogin" required>
+                                                    id="passwordlogin" autocomplete="current-password" required>
                                                 <span class="input-group-text" id="togglePassword3" style="cursor: pointer;"
                                                     onclick="togglePasswordLogin()">
                                                     <i id="passwordIconLogin" class="fa fa-eye"></i>
@@ -90,16 +90,18 @@
         $('#customer_login_form').on('submit', function(event) {
             event.preventDefault();
 
+            if (!this.checkValidity()) { this.reportValidity(); return; }
             var formData = new FormData(this);
+            var submitButton = $(this).find('button[type=submit]');
 
             $.ajax({
-                url: '{{ url('/portal/login') }}', // เปลี่ยนเป็น URL ของ Portal ลูกค้า
+                url: '{{ route('customer.login.post') }}', // เปลี่ยนเป็น URL ของ Portal ลูกค้า
                 type: 'POST',
                 data: formData,
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    // สามารถใส่ Loading ตรงนี้ได้
+                    submitButton.prop('disabled', true);
                 },
                 success: function(data) {
                     if (data.status == 'success') {
@@ -111,7 +113,7 @@
                             showConfirmButton: false
                         }).then(() => {
                             // ส่งลูกค้าไปที่หน้าดาวน์โหลด หรือ URL ที่เขาตั้งใจจะไปตอนแรก (Intended)
-                            window.location.href = '{{ url('/portal/download-list') }}';
+                            window.location.href = data.redirect_url;
                         });
                     } else {
                         Swal.fire({
@@ -121,6 +123,7 @@
                         });
                     }
                 },
+                complete: function() { submitButton.prop('disabled', false); },
                 error: function(jqXHR) {
                     if (jqXHR.status === 419) {
                         Swal.fire({
@@ -131,7 +134,7 @@
                     } else {
                         Swal.fire({
                             title: 'Error',
-                            text: 'An error occurred. Please try again.',
+                            text: jqXHR.responseJSON?.message || 'An error occurred. Please try again.',
                             icon: 'error'
                         });
                     }
@@ -146,7 +149,7 @@
             Swal.fire({
                 icon: 'warning',
                 title: 'Attention',
-                text: '{{ session('error') }}'
+                text: @json(session('error'))
             });
         </script>
     @endif

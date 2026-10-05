@@ -342,8 +342,8 @@
                 var previewConfigs = [];
 
                 files.forEach(file => {
-                    var fileUrl = "{{ url('uploads/lots') }}/" + file.file_name;
-                    previewUrls.push(fileUrl);
+                    var fileUrl = "{{ url('lots/file') }}/" + file.id + "/download";
+                    previewUrls.push(fileUrl + "?preview=1");
 
                     previewConfigs.push({
                         caption: file.file_name,

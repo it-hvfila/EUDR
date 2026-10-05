@@ -2,28 +2,40 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CustomerSession
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        // เช็คว่าใน Session มีข้อมูล 'customer' ที่เราใส่ไว้ตอน Login สำเร็จหรือไม่
-        if (!$request->session()->has('customer')) {
+        $id = $request->session()->get('customer.customer_id');
+        $customer = $id ? DB::connection('mysql2')->table('customers')->where('id', $id)->first() : null;
 
-            // ถ้าไม่มี (แปลว่ายังไม่ได้ Login หรือ Session หมดอายุ)
-            // ระบบจะจำ URL ที่เขากำลังจะเข้าไว้ (Intended URL) เช่น ลิงก์ดาวน์โหลดจาก PDF
-            // แล้วพาไปหน้า Login ของลูกค้า
-            return redirect()->route('customer.login')->with('error', 'กรุณาเข้าสู่ระบบก่อนดาวน์โหลดไฟล์');
+        if (!$customer || !$customer->is_active ||
+            !hash_equals(hash('sha256', $customer->password), (string) $request->session()->get('customer.credential_version', '')) ||
+            !$customer->expired_at ||
+            Carbon::parse($customer->expired_at)->lessThanOrEqualTo(now())) {
+            $request->session()->forget('customer');
+            if ($request->isMethod('GET') && !$request->routeIs('customer.logout')) {
+                // Store only a server-observed protected URL, never a client redirect parameter.
+                $request->session()->put('customer_intended', $request->fullUrl());
+            }
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'กรุณาเข้าสู่ระบบลูกค้าอีกครั้ง'], 401);
+            }
+
+            return redirect()->route('customer.login')
+                ->with('error', 'กรุณาเข้าสู่ระบบ บัญชีอาจหมดอายุหรือถูกระงับการใช้งาน');
         }
 
-        return $next($request);
+        $request->session()->put('customer.name', $customer->customer_name ?? $customer->username);
+
+        $response = $next($request);
+        $response->headers->set('Cache-Control', 'no-store, private');
+        return $response;
     }
 }

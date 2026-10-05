@@ -233,6 +233,10 @@ class SupplierDocumentController extends Controller
         ]);
 
 
+        if ($request->doc_id) {
+            \App\Services\PrivateReportFiles::assertUnlinked('supplier_document_id', [$request->doc_id]);
+        }
+
         $data = [
 
             'doc_name' => $request->doc_name,
@@ -258,25 +262,18 @@ class SupplierDocumentController extends Controller
             $ext = $file->getClientOriginalExtension();
 
 
-            $filename =
-                $request->doc_name
-                . '_'
-                . now()->format('Ymd_His')
-                . '_'
-                . substr(md5(uniqid()), 0, 6)
-                . '.'
-                . $ext;
+            $filename = (string) \Illuminate\Support\Str::uuid().'.'.$file->extension();
 
 
             $uploadPath =
-                public_path('uploads/supplier_doc');
+                storage_path('app/private/uploads/supplier_doc');
 
 
             if (!file_exists($uploadPath)) {
 
                 mkdir(
                     $uploadPath,
-                    0777,
+                    0750,
                     true
                 );
 
@@ -348,7 +345,7 @@ class SupplierDocumentController extends Controller
 
 
         $filePath =
-            public_path($doc->file_path);
+            \App\Services\PrivateReportFiles::existing($doc->file_path);
 
 
         if (!file_exists($filePath)) {
@@ -379,7 +376,7 @@ class SupplierDocumentController extends Controller
 
 
         $filePath =
-            public_path($doc->file_path);
+            \App\Services\PrivateReportFiles::existing($doc->file_path);
 
 
         if (!file_exists($filePath)) {
@@ -409,6 +406,7 @@ class SupplierDocumentController extends Controller
      */
     public function destroy($id)
     {
+        \App\Services\PrivateReportFiles::assertUnlinked('supplier_document_id', [$id]);
         $doc = DB::connection('mysql2')
             ->table('supplier_documents')
             ->where('id', $id)
@@ -420,7 +418,7 @@ class SupplierDocumentController extends Controller
             if ($doc->file_path) {
 
                 $filePath =
-                    public_path($doc->file_path);
+                    \App\Services\PrivateReportFiles::path($doc->file_path);
 
                 if (file_exists($filePath)) {
                     unlink($filePath);

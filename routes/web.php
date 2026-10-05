@@ -103,60 +103,60 @@ Route::middleware(['username.session'])->group(function () {
     // Route::get('/supplier_docs/download/{token}', [SupplierDocumentController::class, 'download'])->name('supplier_docs.download');
     // Route::delete('/supplier_docs/delete/{id}', [SupplierDocumentController::class, 'destroy'])->name('supplier_docs.destroy');
 
-// หน้า Supplier List
-Route::get(
-    '/supplier_docs',
-    [SupplierDocumentController::class, 'suppliers']
-)->name('supplier_docs');
+    // หน้า Supplier List
+    Route::get(
+        '/supplier_docs',
+        [SupplierDocumentController::class, 'suppliers']
+    )->name('supplier_docs');
 
 
-// Data Supplier List
-Route::get(
-    '/supplier_docs/data',
-    [SupplierDocumentController::class, 'suppliers']
-)->name('supplier_docs.data');
+    // Data Supplier List
+    Route::get(
+        '/supplier_docs/data',
+        [SupplierDocumentController::class, 'suppliers']
+    )->name('supplier_docs.data');
 
 
-// เข้า Supplier แล้วดู Documents
-Route::get(
-    '/supplier_docs/{supplier_id}',
-    [SupplierDocumentController::class, 'documentList']
-)->name('supplier_docs.list');
+    // เข้า Supplier แล้วดู Documents
+    Route::get(
+        '/supplier_docs/{supplier_id}',
+        [SupplierDocumentController::class, 'documentList']
+    )->name('supplier_docs.list');
 
 
-// Get Document สำหรับ Edit
-Route::get(
-    '/supplier_docs/get/{id}',
-    [SupplierDocumentController::class, 'getDocument']
-)->name('supplier_docs.get');
+    // Get Document สำหรับ Edit
+    Route::get(
+        '/supplier_docs/get/{id}',
+        [SupplierDocumentController::class, 'getDocument']
+    )->name('supplier_docs.get');
 
 
-// Save / Update
-Route::post(
-    '/supplier_docs/save',
-    [SupplierDocumentController::class, 'saveDocument']
-)->name('supplier_docs.save');
+    // Save / Update
+    Route::post(
+        '/supplier_docs/save',
+        [SupplierDocumentController::class, 'saveDocument']
+    )->name('supplier_docs.save');
 
 
-// View File
-Route::get(
-    '/supplier_docs/view/{token}',
-    [SupplierDocumentController::class, 'view']
-)->name('supplier_docs.view');
+    // View File
+    Route::get(
+        '/supplier_docs/view/{token}',
+        [SupplierDocumentController::class, 'view']
+    )->name('supplier_docs.view');
 
 
-// Download File
-Route::get(
-    '/supplier_docs/download/{token}',
-    [SupplierDocumentController::class, 'download']
-)->name('supplier_docs.download');
+    // Download File
+    Route::get(
+        '/supplier_docs/download/{token}',
+        [SupplierDocumentController::class, 'download']
+    )->name('supplier_docs.download');
 
 
-// Delete
-Route::delete(
-    '/supplier_docs/delete/{id}',
-    [SupplierDocumentController::class, 'destroy']
-)->name('supplier_docs.delete');
+    // Delete
+    Route::delete(
+        '/supplier_docs/delete/{id}',
+        [SupplierDocumentController::class, 'destroy']
+    )->name('supplier_docs.delete');
 
 
     // เอกสารบริษัท
@@ -215,6 +215,9 @@ Route::delete(
         ->name('fg.cpd.delete');
 
     // invoice
+    Route::post('/invoice/report', [InvoiceController::class, 'createReport'])->name('invoice.report.create');
+    Route::post('/invoice/report/{token}/reset-password', [InvoiceController::class, 'resetReportPassword'])->name('invoice.report.reset');
+    Route::get('/lots/file/{id}/download', [LotController::class, 'downloadFile'])->name('lots.file.download');
     Route::get('/invoice', [InvoiceController::class, 'index']);
     Route::post('/invoice/search', [InvoiceController::class, 'search'])->name('invoice.search');
 
@@ -285,17 +288,20 @@ Route::prefix('portal')->group(function () {
         // Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
         //     ->name('company.docs.download');
 
+        Route::get('/reports/{report}/files', [CustomerController::class, 'reportFiles'])->name('customer.report.files');
+        Route::get('/reports/{report}/files/{file}/download', [CustomerController::class, 'download'])->name('customer.report.download');
+
         // Logout สำหรับลูกค้า
-        Route::get('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
+        Route::post('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
     });
 });
 // Route สำหรับโหลด GeoJSON (ที่คุณเขียน Logic ไว้ใน web.php)
 Route::get('/download-geojson/{filename}', [InvoiceController::class, 'downloadGeojson'])
     ->where('filename', '.*')
-    ->name('geojson.download');
+    ->middleware('username.session')->name('geojson.download');
 
 
-        // Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
-        Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
-            ->name('company.docs.download');
-//end-middleware
+// Route สำหรับโหลดเอกสารบริษัทผ่าน Controller
+Route::get('/company_docs/download/{token}', [CompanyDocumentController::class, 'download'])
+    ->middleware('username.session')->name('company.docs.download');
+// end-middleware
