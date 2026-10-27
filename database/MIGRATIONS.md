@@ -43,3 +43,20 @@ migrations again succeeded. The live application database was read only.
 
 Sanctum's automatic token migration is disabled in AppServiceProvider because the
 current application uses session login and the live schema has no token table.
+
+## Repair older server download logs (2026-10-27)
+
+If downloads fail with an unknown `log_downloads.report_id` column after baselining,
+deploy `2026_10_27_000000_add_report_references_to_log_downloads_table.php` and run:
+
+```sh
+docker exec eudr_web_app php artisan migrate --database=mysql2 --force
+```
+
+This adds missing nullable `report_id` and `report_file_id` columns and their foreign
+keys. Existing download rows remain unchanged. A database with these columns and
+foreign keys already present is left intact. The repair deliberately rejects automatic
+rollback to avoid deleting audit history or columns that existed before the repair.
+Tested on current and legacy schemas in a temporary MySQL database, including repeat
+execution and preservation of an existing audit row. This repairs the download-log
+references only; it does not assert that every other server table matches the baseline.
