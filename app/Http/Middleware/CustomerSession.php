@@ -25,11 +25,11 @@ class CustomerSession
                 $request->session()->put('customer_intended', $request->fullUrl());
             }
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'กรุณาเข้าสู่ระบบลูกค้าอีกครั้ง'], 401);
+                return response()->json(['message' => 'Please sign in to the customer portal again.'], 401);
             }
 
             return redirect()->route('customer.login')
-                ->with('error', 'กรุณาเข้าสู่ระบบ บัญชีอาจหมดอายุหรือถูกระงับการใช้งาน');
+                ->with('error', 'Please sign in. Your account may have expired or been deactivated.');
         }
 
         $request->session()->put('customer.name', $customer->customer_name ?? $customer->username);

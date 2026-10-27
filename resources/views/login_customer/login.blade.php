@@ -23,7 +23,7 @@
                                     </div>
 
                                     {{-- id="customer_login_form" --}}
-                                    <form class="row g-3 needs-validation" id="customer_login_form">
+                                    <form class="row g-3 needs-validation" id="customer_login_form" novalidate>
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
@@ -44,7 +44,7 @@
                                                     onclick="togglePasswordLogin()">
                                                     <i id="passwordIconLogin" class="fa fa-eye"></i>
                                                 </span>
-                                                <div class="invalid-feedback">Please enter your password!</div>
+                                                <div class="invalid-feedback">Please enter your password.</div>
                                             </div>
                                         </div>
 
@@ -90,7 +90,11 @@
         $('#customer_login_form').on('submit', function(event) {
             event.preventDefault();
 
-            if (!this.checkValidity()) { this.reportValidity(); return; }
+            this.classList.add('was-validated');
+            if (!this.checkValidity()) {
+                this.querySelector(':invalid')?.focus();
+                return;
+            }
             var formData = new FormData(this);
             var submitButton = $(this).find('button[type=submit]');
 

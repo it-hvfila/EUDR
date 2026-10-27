@@ -35,7 +35,7 @@ class CustomerController extends Controller
             if (RateLimiter::tooManyAttempts($key, 10)) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'ลองเข้าสู่ระบบบ่อยเกินไป กรุณารอสักครู่แล้วลองใหม่',
+                    'message' => 'Too many login attempts. Please wait a moment and try again.',
                 ], 429)->header('Retry-After', RateLimiter::availableIn($key));
             }
         }
@@ -53,7 +53,7 @@ class CustomerController extends Controller
             !$customer->expired_at || Carbon::parse($customer->expired_at)->lessThanOrEqualTo(now())) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'ไม่สามารถเข้าสู่ระบบได้ กรุณาตรวจสอบข้อมูลหรือติดต่อผู้ดูแล',
+                'message' => 'Unable to sign in. Please check your credentials or contact your administrator.',
             ], 401);
         }
 
@@ -70,7 +70,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'เข้าสู่ระบบสำเร็จ!',
+            'message' => 'You have signed in successfully!',
             'redirect_url' => $request->session()->pull('customer_intended', route('customer.dashboard')),
         ]);
     }
