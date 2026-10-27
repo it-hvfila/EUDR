@@ -112,6 +112,19 @@ class CustomerController extends Controller
         return view('Invoice', $data + ['customerPortal' => true]);
     }
 
+    public function map(Request $request, string $report, string $file)
+    {
+        $report = $this->permittedReport($request, $report);
+        $source = DB::connection('mysql2')->table('customer_report_files as rf')
+            ->join('lot_files as lf', 'rf.lot_file_id', '=', 'lf.id')
+            ->where('rf.report_id', $report->id)->where('rf.token', $file)
+            ->select('lf.*')->first();
+        abort_unless($source, 404);
+        return app(\App\Services\GeoJsonViewer::class)->respond($request, $source,
+            route('customer.report.files', $report->token),
+            route('customer.report.download', [$report->token, $file]));
+    }
+
     public function download(Request $request, string $report, string $file)
     {
         $report = $this->permittedReport($request, $report);

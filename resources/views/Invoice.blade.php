@@ -51,6 +51,9 @@
             .invoice-account-footer, .invoice-account-footer form, .invoice-account-footer .btn { width: 100%; }
         }
 
+        .geojson-print-link { display: none; }
+        @media print { .geojson-print-link { display: inline; } }
+
         .a4-wrapper {
             background: #f0f0f0;
             padding: 20px 0;
@@ -520,7 +523,18 @@
 
                                         @if (!empty($d['geojson']) && count($d['geojson']) > 0)
                                             @foreach ($d['geojson'] as $file)
-                                                {{-- ใส่ลิงก์ดาวน์โหลดตรงนี้ --}}
+                                                @if (\App\Services\GeoJsonViewer::supported($file['file_path'] ?? ''))
+                                                    @if ($customerPortal)
+                                                        @if (!empty($geojsonMapUrls[$file['id']]))
+                                                            <a href="{{ $geojsonMapUrls[$file['id']] }}" target="_blank" rel="noopener" class="link-text">ดูแผนที่</a> ·
+                                                        @endif
+                                                    @else
+                                                        <span class="no-print"><a href="{{ route('invoice.geojson.map', $file['id']) }}" target="_blank" rel="noopener" class="link-text">ดูแผนที่</a> · </span>
+                                                        @if (!empty($geojsonMapUrls[$file['id']]))
+                                                            <span class="geojson-print-link"><a href="{{ $geojsonMapUrls[$file['id']] }}" class="link-text">ดูแผนที่</a> · </span>
+                                                        @endif
+                                                    @endif
+                                                @endif
                                                 @if (!empty($evidenceUrls['lot_file_id:'.$file['id']]))<a href="{{ $evidenceUrls['lot_file_id:'.$file['id']] }}" target="_blank" class="link-text">
                                                     Appx #{{ $appx++ }} GeoJSON file
                                                 </a>@else <span class="text-muted">ยังไม่เปิดใช้หลักฐาน</span> @endif<br>

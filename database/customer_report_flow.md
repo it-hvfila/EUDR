@@ -43,3 +43,21 @@ omits both it remains null. Company is read from `ShipHead_Company` or
 requires the BAQ to return company explicitly. Company evidence tokens currently
 match the fixed evidence rows in Invoice.blade.php and are listed in
 `config/customer_reports.php`.
+
+## GeoJSON map viewer
+
+The report links lot evidence with `.geojson` or `.json` extensions to an interactive
+map. Customer HTML and JSON requests both check report ownership and expiry;
+employees use a separate route under `username.session`. PDF links use the
+customer route. Raw evidence remains private. Viewer responses expose a small
+allowlist of plot properties and render popup text with DOM `textContent`.
+Leaflet 1.9.4 is vendored locally (see its LICENSE); OpenStreetMap background tiles
+require internet access. When tiles are unavailable, vector plots still render.
+Implementation reference: https://leafletjs.com/examples/geojson/
+
+OSM tiles require a browser Referer. The viewer uses
+`strict-origin-when-cross-origin` on the response, HTML meta and tile images so
+only the application origin is shared, not the report token/path. Do not change
+this to `same-origin` or `no-referrer` while using the OSM tile service. Users can
+hide the basemap if their network blocks it; tile errors automatically hide it.
+Policy: https://operations.osmfoundation.org/policies/tiles/

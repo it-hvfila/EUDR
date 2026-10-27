@@ -229,6 +229,14 @@ class InvoiceController extends Controller
 
 
 
+    public function geojsonMap(Request $request, $id)
+    {
+        $source = DB::connection('mysql2')->table('lot_files')->where('id', $id)->first();
+        abort_unless($source, 404);
+        return app(\App\Services\GeoJsonViewer::class)->respond($request, $source,
+            url('/invoice'), route('lots.file.download', $source->id));
+    }
+
     public function downloadGeojson($filename)
     {
         // แปลง path ให้เป็น path ภายใน public เท่านั้น

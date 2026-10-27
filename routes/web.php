@@ -215,6 +215,7 @@ Route::middleware(['username.session'])->group(function () {
         ->name('fg.cpd.delete');
 
     // invoice
+    Route::get('/invoice/geojson/{id}/map', [InvoiceController::class, 'geojsonMap'])->name('invoice.geojson.map');
     Route::post('/invoice/report', [InvoiceController::class, 'createReport'])->name('invoice.report.create');
     Route::post('/invoice/report/{token}/reset-password', [InvoiceController::class, 'resetReportPassword'])->name('invoice.report.reset');
     Route::get('/lots/file/{id}/download', [LotController::class, 'downloadFile'])->name('lots.file.download');
@@ -289,6 +290,7 @@ Route::prefix('portal')->group(function () {
         //     ->name('company.docs.download');
 
         Route::get('/reports/{report}/files', [CustomerController::class, 'reportFiles'])->name('customer.report.files');
+        Route::get('/reports/{report}/files/{file}/map', [CustomerController::class, 'map'])->name('customer.report.map');
         Route::get('/reports/{report}/files/{file}/download', [CustomerController::class, 'download'])->name('customer.report.download');
 
         // Logout สำหรับลูกค้า

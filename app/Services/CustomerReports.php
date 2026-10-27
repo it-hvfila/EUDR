@@ -81,6 +81,7 @@ class CustomerReports
         $snapshot = json_decode($report->report_data, true, 512, JSON_THROW_ON_ERROR);
         $files = DB::connection('mysql2')->table('customer_report_files')->where('report_id', $report->id)->get();
         $urls = [];
+        $mapUrls = [];
         $missingEvidence = [];
         foreach ($files as $file) {
             foreach (['lot_file_id', 'supplier_document_id', 'company_document_id'] as $column) {
@@ -91,6 +92,9 @@ class CustomerReports
                         $missingEvidence[] = $source->file_name ?? $source->doc_name ?? ($table.' #'.$file->$column);
                     }
                     $urls[$column.':'.$file->$column] = route('customer.report.download', [$report->token, $file->token]);
+                    if ($column === 'lot_file_id' && $source && GeoJsonViewer::supported($source->file_path)) {
+                        $mapUrls[$source->id] = route('customer.report.map', [$report->token, $file->token]);
+                    }
                 }
             }
         }
@@ -106,7 +110,7 @@ class CustomerReports
                 'docs' => collect($item['docs'])->map(fn ($doc) => (object) $doc),
             ]),
             'reportAccount' => DB::connection('mysql2')->table('customers')->where('id', $report->customer_id)->first(),
-            'searched' => true, 'report' => $report, 'evidenceUrls' => $urls, 'companyUrls' => $companyUrls, 'missingEvidence' => $missingEvidence,
+            'searched' => true, 'report' => $report, 'evidenceUrls' => $urls, 'geojsonMapUrls' => $mapUrls, 'companyUrls' => $companyUrls, 'missingEvidence' => $missingEvidence,
         ];
     }
 }

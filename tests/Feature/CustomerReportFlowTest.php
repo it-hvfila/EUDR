@@ -83,7 +83,7 @@ class CustomerReportFlowTest extends TestCase
         $this->assertSame(0, DB::connection('mysql2')->table('customers')->count());
         $this->assertSame('C1', session('invoice_pending.data.header.epicor_customer_code'));
         $this->create();
-        $this->post('/invoice/search', ['pack_id' => 123])->assertOk()->assertSee('รายงานนี้สร้างบัญชีลูกค้าแล้ว');
+        $this->post('/invoice/search', ['pack_id' => 123])->assertOk()->assertSee('บัญชีลูกค้าสำหรับรายงานนี้');
         $this->assertSame(1, DB::connection('mysql2')->table('customers')->count());
     }
 
@@ -210,6 +210,78 @@ class CustomerReportFlowTest extends TestCase
         $this->get('/company_docs/download/company-token')->assertRedirect('/');
         $this->get('/download-geojson/uploads/lots/file.geojson')->assertRedirect('/');
         $this->get('/supplier_docs/download/supplier-token')->assertRedirect('/');
+    }
+
+    private function mapFixture(): array
+    {
+        file_put_contents(\App\Services\PrivateReportFiles::path($this->testPath), json_encode([
+            'type' => 'FeatureCollection', 'features' => [[
+                'type' => 'Feature', 'properties' => ['plot_id' => '<script>alert(1)</script>', 'Famer Name' => 'PRIVATE NAME', 'address' => 'PRIVATE ADDRESS'],
+                'geometry' => ['type' => 'Polygon', 'coordinates' => [[[100, 13], [100.01, 13], [100.01, 13.01], [100, 13]]]],
+            ]],
+        ]));
+        [$report] = $this->create();
+        $file = DB::connection('mysql2')->table('customer_report_files')->whereNotNull('lot_file_id')->first();
+        return [$report, $file, route('customer.report.map', [$report->token, $file->token])];
+    }
+
+    public function test_map_login_and_filtered_geojson_data(): void
+    {
+        [$report, $file, $url] = $this->mapFixture();
+        $this->get($url)->assertRedirect(route('customer.login'))->assertSessionHas('customer_intended', $url);
+        $this->withSession($this->customerSession($report))->get($url)->assertOk()->assertSee('Origin Map')->assertSee('leaflet.js')
+            ->assertHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
+            ->assertSee('name="referrer" content="strict-origin-when-cross-origin"', false)
+            ->assertSee("referrerPolicy: 'strict-origin-when-cross-origin'", false);
+        $this->get($url.'?format=geojson')->assertOk()->assertJsonPath('features.0.geometry.type', 'Polygon')
+            ->assertJsonMissingPath('features.0.properties.Famer Name')->assertDontSee('PRIVATE NAME')->assertDontSee('PRIVATE ADDRESS');
+        $this->assertSame(0, DB::connection('mysql2')->table('log_downloads')->count());
+        $this->get(route('customer.report.files', $report->token))->assertOk()->assertSee($url)->assertSee('ดูแผนที่');
+    }
+
+    public function test_map_blocks_other_customer_wrong_file_and_expiry(): void
+    {
+        [$report, $file, $url] = $this->mapFixture();
+        $this->snapshot['header']['pack_id'] = '456';
+        [$other] = $this->create();
+        $this->withSession($this->customerSession($other))->get($url)->assertNotFound();
+        $this->get($url.'?format=geojson')->assertNotFound();
+        $this->withSession($this->customerSession($report))->get(route('customer.report.map', [$report->token, 'fake']))->assertNotFound();
+        DB::connection('mysql2')->table('customer_reports')->where('id', $report->id)->update(['expired_at' => now()->subMinute()]);
+        $this->get($url)->assertNotFound();
+        $this->get($url.'?format=geojson')->assertNotFound();
+    }
+
+    public function test_employee_map_requires_employee_session(): void
+    {
+        $this->mapFixture();
+        $this->get(route('invoice.geojson.map', 1))->assertRedirect('/');
+        $this->withSession(['users' => ['username' => 'sale']])->get(route('invoice.geojson.map', 1))->assertOk();
+        $this->get(route('invoice.geojson.map', 1).'?format=geojson')->assertOk()->assertJsonPath('features.0.geometry.type', 'Polygon');
+    }
+
+    public function test_map_rejects_non_geojson_and_invalid_data(): void
+    {
+        [$report, $file, $url] = $this->mapFixture();
+        $this->withSession($this->customerSession($report));
+        file_put_contents(\App\Services\PrivateReportFiles::path($this->testPath), 'not json');
+        $this->get($url.'?format=geojson')->assertStatus(422);
+        file_put_contents(\App\Services\PrivateReportFiles::path($this->testPath), '{"type":"Point","coordinates":[999,999]}');
+        $this->get($url.'?format=geojson')->assertStatus(422);
+        DB::connection('mysql2')->table('lot_files')->where('id', 1)->update(['file_path' => 'uploads/lots/example.pdf']);
+        $this->get($url)->assertStatus(415);
+    }
+
+    public function test_map_supports_points_multipolygons_and_empty_files(): void
+    {
+        [$report, $file, $url] = $this->mapFixture();
+        $this->withSession($this->customerSession($report));
+        foreach ([['type' => 'Point', 'coordinates' => [100, 13]],
+            ['type' => 'MultiPolygon', 'coordinates' => [[[[100, 13], [100.01, 13], [100, 13.01], [100, 13]]]]],
+            ['type' => 'FeatureCollection', 'features' => []]] as $data) {
+            file_put_contents(\App\Services\PrivateReportFiles::path($this->testPath), json_encode($data));
+            $this->get($url.'?format=geojson')->assertOk()->assertJsonPath('type', $data['type']);
+        }
     }
 
     public function test_path_traversal_is_rejected(): void
